@@ -27,7 +27,7 @@ using System;
 
 namespace MvcStore.Models
 {
-	public class BaseModel
+	public abstract class BaseModel
 	{
 		public virtual int Id { get; protected set; }
 		

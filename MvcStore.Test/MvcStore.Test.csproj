@@ -39,13 +39,21 @@
     <Reference Include="Moq">
       <HintPath>..\lib\moq\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Data.Sqlite" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="Database\Database.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="ModelTests\" />
     <Folder Include="ControllerTests\" />
+    <Folder Include="Database\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MvcStore\MvcStore.csproj">
+      <Project>{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}</Project>
+      <Name>MvcStore</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

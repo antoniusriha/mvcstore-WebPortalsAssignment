@@ -1,5 +1,7 @@
 *~
 bin/
 obj/
+test-results/
 *.userprefs
 *.suo
+/MvcStore/store.db

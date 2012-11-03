@@ -1,5 +1,5 @@
 //
-// Test.cs
+// Database.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -29,11 +29,12 @@ using NUnit.Framework;
 namespace MvcStore.Test
 {
 	[TestFixture()]
-	public class Test
+	public class Database
 	{
 		[Test()]
-		public void TestCase ()
+		public void SetupDb ()
 		{
+			Assert.DoesNotThrow (delegate { MvcApplication.CreateSessionFactory (); });
 		}
 	}
 }

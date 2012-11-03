@@ -8,13 +8,13 @@ namespace MvcStore
     /// implements IAutomappingConfiguration directly, or inherits from DefaultAutomappingConfiguration.
     /// Overriding methods in this class will alter how the automapper behaves.
     /// </summary>
-    class ExampleAutomappingConfiguration : DefaultAutomappingConfiguration
+    class StoreAutomappingConfiguration : DefaultAutomappingConfiguration
     {
         public override bool ShouldMap(Type type)
         {
             // specify the criteria that types must meet in order to be mapped
             // any type for which this method returns false will not be mapped.
-            return type.Namespace == "Examples.FirstAutomappedProject.Entities";
+			return type.Namespace == "MvcStore.Models";
         }
 
 //        public override bool IsComponent(Type type)
