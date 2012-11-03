@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStore", "MvcStore\MvcStore.csproj", "{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStore.Test", "MvcStore.Test\MvcStore.Test.csproj", "{F3BF61C0-4678-4835-B37F-8153B1D6DB65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BF61C0-4678-4835-B37F-8153B1D6DB65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BF61C0-4678-4835-B37F-8153B1D6DB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BF61C0-4678-4835-B37F-8153B1D6DB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BF61C0-4678-4835-B37F-8153B1D6DB65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MvcStore\MvcStore.csproj

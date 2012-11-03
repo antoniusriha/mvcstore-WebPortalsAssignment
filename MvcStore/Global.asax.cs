@@ -29,9 +29,6 @@ namespace MvcStore
 		{
 			AreaRegistration.RegisterAllAreas ();
 			RegisterRoutes (RouteTable.Routes);
-			
-			// Setup database
-			System.IO.File.Create ("tsts.txt");
 		}
 	}
 }

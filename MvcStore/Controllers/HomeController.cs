@@ -18,11 +18,11 @@ namespace MvcStore.Controllers
 		
 		public ActionResult Category ()
 		{
-			var cat = new Category () { Name = "Cat" };
-			cat.Products.Add (new Product () { Name = "P1" });
-			cat.Products.Add (new Product () { Name = "P2" });
+//			var cat = new Category () { Name = "Cat" };
+//			cat.Products.Add (new Product () { Name = "P1" });
+//			cat.Products.Add (new Product () { Name = "P2" });
 			
-			return View (cat);
+			return View ();
 		}
 	}
 }

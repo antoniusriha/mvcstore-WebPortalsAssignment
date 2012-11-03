@@ -29,6 +29,6 @@ namespace MvcStore.Models
 {
 	public class Product : BaseModel
 	{
-		public Category Category { get; set; }
+		public virtual Category Category { get; set; }
 	}
 }
