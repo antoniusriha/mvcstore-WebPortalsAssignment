@@ -25,16 +25,18 @@
 // THE SOFTWARE.
 using System;
 using NUnit.Framework;
+using FluentAssertions;
 
 namespace MvcStore.Test
 {
 	[TestFixture()]
-	public class Database
+	public class DatabaseFixture
 	{
 		[Test()]
 		public void SetupDb ()
 		{
-			Assert.DoesNotThrow (delegate { MvcApplication.CreateSessionFactory (); });
+			Action j = delegate { MvcApplication.CreateSessionFactory (); };
+			j.ShouldNotThrow ("NHibernate was not able to map the model to a db schema.");
 		}
 	}
 }

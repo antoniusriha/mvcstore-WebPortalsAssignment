@@ -40,15 +40,18 @@
       <HintPath>..\lib\moq\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\Database.cs" />
+    <Compile Include="Database\DatabaseFixture.cs" />
+    <Compile Include="Controller\StoreFixture.cs" />
+    <Compile Include="Model\When_I_add_a_category_to_the_store.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="ModelTests\" />
-    <Folder Include="ControllerTests\" />
     <Folder Include="Database\" />
+    <Folder Include="Controller\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvcStore\MvcStore.csproj">

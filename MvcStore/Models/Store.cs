@@ -1,5 +1,5 @@
 //
-// Order.cs
+// Store.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,20 +24,54 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using MvcStore.Models;
 
 namespace MvcStore.Models
 {
-	public class Order : BaseModel
+	public class Store
 	{
-		public Order (string name) : base (name) {}
-
-		protected Order () {}
-		
-		public virtual IList<Product> Products {
-			get { return products ?? (products = new List<Product> ()); }
+		public Store (IStore repo)
+		{
+			if (repo == null)
+				throw new ArgumentNullException ("repo");
+			this.repo = repo;
 		}
 
-		List<Product> products;
+		public IList<Category> Categories {
+			get { return repo.Categories.ToList (); }
+		}
+
+		public void AddProduct (Product product)
+		{
+			if (product == null)
+				throw new ArgumentNullException ("product");
+			repo.AddProduct (product);
+		}
+
+		public bool RemoveProduct (Product product)
+		{
+			if (product == null)
+				return false;
+			return repo.RemoveProduct (product);
+		}
+
+		public void AddCategory (Category category)
+		{
+			if (category == null)
+				throw new ArgumentNullException ("category");
+			repo.AddCategory (category);
+
+		}
+
+		public void RemoveCategory (Category category)
+		{
+			if (category == null)
+				throw new ArgumentNullException ("category");
+
+		}
+
+		IStore repo;
 	}
 }

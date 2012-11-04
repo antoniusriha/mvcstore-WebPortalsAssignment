@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentNHibernate.Automapping;
+using MvcStore.Models;
 
 namespace MvcStore
 {
@@ -14,7 +15,7 @@ namespace MvcStore
         {
             // specify the criteria that types must meet in order to be mapped
             // any type for which this method returns false will not be mapped.
-			return type.Namespace == "MvcStore.Models";
+			return type.Namespace == "MvcStore.Models.Entities";
         }
 
 //        public override bool IsComponent(Type type)

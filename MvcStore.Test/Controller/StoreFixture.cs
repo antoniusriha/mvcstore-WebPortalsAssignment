@@ -1,5 +1,5 @@
 //
-// Order.cs
+// StoreTest.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,20 +24,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
+using NUnit.Framework;
 
-namespace MvcStore.Models
+namespace MvcStore.Test
 {
-	public class Order : BaseModel
+	[TestFixture()]
+	public class StoreFixture
 	{
-		public Order (string name) : base (name) {}
-
-		protected Order () {}
-		
-		public virtual IList<Product> Products {
-			get { return products ?? (products = new List<Product> ()); }
+		[Test()]
+		public void TestCase ()
+		{
 		}
-
-		List<Product> products;
 	}
 }

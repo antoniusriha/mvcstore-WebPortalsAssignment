@@ -12,22 +12,22 @@ namespace MvcStore.Controllers
         public ActionResult Index ()
         {
 			var cats = new List<Category> {
-				new Category { Name = "Cat 1" },
-				new Category { Name = "Cat 2" },
-				new Category { Name = "Cat 3" }
+				new Category ("Cat 1"),
+				new Category ("Cat 2"),
+				new Category ("Cat 3")
 			};
             return View (cats);
         }
 		
 		public ActionResult Browse (string category)
 		{
-			var cat = new Category { Name = "Category 1" };
+			var cat = new Category ("Category 1");
 			return View (cat);
 		}
 		
 		public ActionResult Details (int id)
 		{
-			var product = new Product { Name = "Handschuh" };
+			var product = new Product ("Handschuh");
 			return View (product);
 		}
     }

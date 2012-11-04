@@ -1,5 +1,5 @@
 //
-// Order.cs
+// StoreFixture.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,20 +24,39 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+using Moq;
+using MvcStore.Models;
+using FluentAssertions;
 
-namespace MvcStore.Models
+namespace MvcStore.Test.Model
 {
-	public class Order : BaseModel
+	[TestFixture()]
+	public class When_a_category_is_added_to_the_store
 	{
-		public Order (string name) : base (name) {}
+		[SetUp()]
+		public void Init ()
+		{
+			// Arrange
+			var mockStore = new Mock<IStore> ();
+			store = mockStore.Object;
+			category = new Category ("Cat1");
+			mockStore.Setup (s => s.AddCategory (category));
+			mockStore.Setup (s => s.Categories.Contains (category)).Returns (true);
 
-		protected Order () {}
-		
-		public virtual IList<Product> Products {
-			get { return products ?? (products = new List<Product> ()); }
+			// Act
+			mockStore.Object.AddCategory (category);
 		}
 
-		List<Product> products;
+		[Test()]
+		public void the_store_should_return_the_category ()
+		{
+			// Assert
+			store.Categories.First ().Should ().Be (category);
+		}
+
+		IStore store;
+		Category category;
 	}
 }

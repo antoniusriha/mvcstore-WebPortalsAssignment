@@ -30,11 +30,14 @@ namespace MvcStore.Models
 {
 	public class Category : BaseModel
 	{
-		public Category ()
-		{
-			Products = new List<Product> ();
-		}
+		public Category (string name) : base (name) {}
 
-		public virtual IList<Product> Products { get; set; }
+		protected Category () {}
+
+		public virtual IList<Product> Products {
+			get { return products ?? (products = new List<Product> ()); }
+		}
+		
+		List<Product> products;
 	}
 }

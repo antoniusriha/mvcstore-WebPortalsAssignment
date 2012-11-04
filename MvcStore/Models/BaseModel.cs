@@ -29,10 +29,34 @@ namespace MvcStore.Models
 {
 	public abstract class BaseModel
 	{
+		public BaseModel (string name)
+		{
+			Name = name;
+		}
+
+		protected BaseModel () {}
+
 		public virtual int Id { get; protected set; }
 		
-		public virtual string Name { get; set; }
+		public virtual string Name {
+			get { return name; }
+			set {
+				FailOnNullOrWhiteSpaceStringParameter (value, "name");
+				name = value;
+			}
+		}
 		
 		public virtual string Description { get; set; }
+
+		protected void FailOnNullOrWhiteSpaceStringParameter (string value, string parameterName)
+		{
+			if (value == null)
+				throw new ArgumentNullException (parameterName);
+
+			if (string.IsNullOrWhiteSpace (value))
+				throw new ArgumentException (parameterName);
+		}
+
+		string name;
 	}
 }

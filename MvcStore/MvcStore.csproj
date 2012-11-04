@@ -62,6 +62,7 @@
     <Folder Include="Views\Store\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Models\FNHibernateStore\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -70,13 +71,15 @@
     </Compile>
     <Compile Include="MonoSqliteDriver.cs" />
     <Compile Include="CascadeConvention.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Controllers\HomeViewModel.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="StoreAutomappingConfiguration.cs" />
+    <Compile Include="Models\Store.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\IStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
