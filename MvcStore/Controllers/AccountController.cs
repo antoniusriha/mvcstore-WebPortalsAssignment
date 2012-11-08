@@ -31,7 +31,7 @@ namespace MvcStore.Controllers
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                    if (IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
                         return Redirect(returnUrl);
@@ -189,5 +189,27 @@ namespace MvcStore.Controllers
             }
         }
         #endregion
+
+		private bool IsLocalUrl(string url)
+		{
+			if (string.IsNullOrEmpty(url))
+			{
+				return false;
+			}
+			
+			Uri absoluteUri;
+			if (Uri.TryCreate(url, UriKind.Absolute, out absoluteUri))
+			{
+				return String.Equals(this.Request.Url.Host, absoluteUri.Host, 
+				                     StringComparison.OrdinalIgnoreCase);
+			}
+			else
+			{
+				bool isLocal = !url.StartsWith("http:", StringComparison.OrdinalIgnoreCase)
+					&& !url.StartsWith("https:", StringComparison.OrdinalIgnoreCase)
+						&& Uri.IsWellFormedUriString(url, UriKind.Relative);
+				return isLocal;
+			}
+		}
     }
 }

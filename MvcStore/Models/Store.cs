@@ -27,16 +27,21 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using MvcStore.Models;
+using System.Web;
+using System.Web.Mvc;
 
 namespace MvcStore.Models
 {
 	public class Store
 	{
-		public Store (IStoreRepository repo)
+		public Store (IStoreRepository repo, IShoppingCartRepository cartRepo)
 		{
+			if (cartRepo == null)
+				throw new ArgumentNullException ("cartRepo");
 			if (repo == null)
 				throw new ArgumentNullException ("repo");
 			this.repo = repo;
+			this.cartRepo = cartRepo;
 
 			// Setup category Misc, if not already there
 			misc = Categories.SingleOrDefault (c => c.Name == "Misc");
@@ -88,12 +93,18 @@ namespace MvcStore.Models
 			return repo.RemoveCategory (category);
 		}
 
-		public int CreateCart ()
+		public ShoppingCart CreateCart (HttpContextBase context)
 		{
-			throw new NotImplementedException ();
+			return new ShoppingCart (context, cartRepo);
+		}
+
+		public ShoppingCart CreateCart (Controller controller)
+		{
+			return new ShoppingCart (controller.HttpContext, cartRepo);
 		}
 
 		IStoreRepository repo;
+		IShoppingCartRepository cartRepo;
 		Category misc;
 	}
 }

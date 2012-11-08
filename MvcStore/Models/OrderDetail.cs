@@ -1,5 +1,5 @@
 //
-// When_a_category_is_removed_from_a_store_which_contains_that_category.cs
+// OrderDetail.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,46 +24,33 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using NUnit.Framework;
-using MvcStore.Models;
-using Moq;
-using FluentAssertions;
-using System.Collections.Generic;
 
-namespace MvcStore.Test
+namespace MvcStore.Models
 {
-	[TestFixture()]
-	public class When_a_category_is_removed_from_a_store_which_contains_that_category
+	public class OrderDetail : BaseModel
 	{
-		[SetUp]
-		public void Init ()
+		public OrderDetail (Product product) : base ("OrderDetail")
 		{
-			// Arrange
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			cat = new Category ("Cat1");
-			mockRepo.Setup (c => c.RemoveCategory (cat)).Returns (true);
-			mockRepo.SetupGet (c => c.Categories).Returns (new List<Category> ());
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
-
-			// Act
-			result = store.RemoveCategory (cat);
+			if (product == null)
+				throw new ArgumentNullException ("product");
+			Product = product;
+			UnitPrice = product.Price;
 		}
 
-		[Test()]
-		public void the_remove_method_should_return_true ()
-		{
-			result.Should ().BeTrue ();
-		}
+		public virtual int Quantity { get; set; }
 
-		[Test()]
-		public void the_store_should_not_contain_the_category ()
-		{
-			store.Categories.Should ().NotContain (cat);
-		}
+		public virtual decimal UnitPrice { get; set; }
 
-		Store store;
-		bool result;
-		Category cat;
+		public virtual Product Product { get; protected set; }
+
+		public virtual Order Order { get; protected set; }
+
+		public virtual void SetOrder (Order order)
+		{
+			if (order == null)
+				throw new ArgumentNullException ("order");
+			order.OrderDetails.Add (this);
+			Order = order;
+		}
 	}
 }

@@ -1,5 +1,5 @@
 //
-// When_a_category_is_removed_from_a_store_which_contains_that_category.cs
+// Cart.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,46 +24,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using NUnit.Framework;
-using MvcStore.Models;
-using Moq;
-using FluentAssertions;
 using System.Collections.Generic;
 
-namespace MvcStore.Test
+namespace MvcStore.Models
 {
-	[TestFixture()]
-	public class When_a_category_is_removed_from_a_store_which_contains_that_category
+	public class Cart : BaseModel
 	{
-		[SetUp]
-		public void Init ()
-		{
-			// Arrange
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			cat = new Category ("Cat1");
-			mockRepo.Setup (c => c.RemoveCategory (cat)).Returns (true);
-			mockRepo.SetupGet (c => c.Categories).Returns (new List<Category> ());
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
+		public Cart (string name) : base (name) {}
 
-			// Act
-			result = store.RemoveCategory (cat);
+		protected Cart () {}
+
+		/// <summary>
+		/// Gets the cart items. CAUTION. Don't use this property to add items to
+		/// the cart! Use the CartItem.SetCart (Cart) method instead.
+		/// </summary>
+		/// <value>
+		/// The items.
+		/// </value>
+		public virtual IList<CartItem> Items {
+			get { return items ?? (items = new List<CartItem> ()); }
 		}
 
-		[Test()]
-		public void the_remove_method_should_return_true ()
-		{
-			result.Should ().BeTrue ();
-		}
-
-		[Test()]
-		public void the_store_should_not_contain_the_category ()
-		{
-			store.Categories.Should ().NotContain (cat);
-		}
-
-		Store store;
-		bool result;
-		Category cat;
+		List<CartItem> items;
 	}
 }

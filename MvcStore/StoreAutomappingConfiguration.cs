@@ -17,7 +17,13 @@ namespace MvcStore
             // any type for which this method returns false will not be mapped.
 			return type.Namespace == "MvcStore.Models"
 				&& type != typeof (IStoreRepository)
-				&& type != typeof (Store);
+				&& type != typeof (Store)
+				&& type != typeof (ChangePasswordModel)
+				&& type != typeof (LogOnModel)
+				&& type != typeof (RegisterModel)
+				&& type != typeof (ShoppingCart)
+				&& type != typeof (IShoppingCartRepository)
+				;
         }
 
 //        public override bool IsComponent(Type type)

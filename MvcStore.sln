@@ -5,12 +5,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStore", "MvcStore\MvcSto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStore.Test", "MvcStore.Test\MvcStore.Test.csproj", "{F3BF61C0-4678-4835-B37F-8153B1D6DB65}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteProvider", "SQLite-Providers\SQLiteProvider.csproj", "{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU

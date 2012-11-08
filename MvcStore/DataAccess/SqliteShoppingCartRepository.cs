@@ -1,5 +1,5 @@
 //
-// SqliteProductRepository.cs
+// SqliteShoppingCartRepository.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -30,9 +30,9 @@ using MvcStore.Models;
 
 namespace MvcStore.DataAccess
 {
-	public class SqliteStoreRepository : IStoreRepository
+	public class SqliteShoppingCartRepository : IShoppingCartRepository
 	{
-		public SqliteStoreRepository (ISessionFactory sessionFactory)
+		public SqliteShoppingCartRepository (ISessionFactory sessionFactory)
 		{
 			if (sessionFactory == null)
 				throw new ArgumentNullException ("sessionFactory");
@@ -40,96 +40,131 @@ namespace MvcStore.DataAccess
 			sessionHelper = new SessionHelper (sessionFactory);
 		}
 
-		public IList<Category> Categories {
+		public IList<Cart> Carts {
 			get {
 				var sd = sessionHelper.GetSessionData ();
 				try {
-					return sd.Session.CreateCriteria (typeof (Category)).List<Category> ();
-				} finally {
-					sessionHelper.CommitIfNecessary (sd);
-				}
-			}
-		}
-		
-		public IList<Product> Products {
-			get {
-				var sd = sessionHelper.GetSessionData ();
-				try {
-					return sd.Session.CreateCriteria (typeof (Product)).List<Product> ();
+					return sd.Session.CreateCriteria (typeof (Cart)).List<Cart> ();
 				} finally {
 					sessionHelper.CommitIfNecessary (sd);
 				}
 			}
 		}
 
-		public void AddCategory (Category category)
+		public void AddCart (Cart cart)
 		{
-			if (category == null)
-				throw new ArgumentNullException ("category");
-
+			if (cart == null)
+				throw new ArgumentNullException ("cart");
 			var sd = sessionHelper.GetSessionData ();
 			try {
-				sd.Session.SaveOrUpdate (category);
+				sd.Session.SaveOrUpdate (cart);
 			} finally {
 				sessionHelper.CommitIfNecessary (sd);
 			}
 		}
 
-		public bool RemoveCategory (Category category)
+		public void RemoveCart (Cart cart)
 		{
-			if (category == null)
-				return false;
-
+			if (cart == null)
+				throw new ArgumentNullException ("cart");
 			var sd = sessionHelper.GetSessionData ();
 			try {
-				sd.Session.Delete (category);
-			} catch {
-				return false;
-			} finally {
-				sessionHelper.CommitIfNecessary (sd);
-			}
-			return true;
-		}
-
-		public void AddProduct (Product product)
-		{
-			if (product == null)
-				throw new ArgumentNullException ("product");
-
-			var sd = sessionHelper.GetSessionData ();
-			try {
-				sd.Session.SaveOrUpdate (product);
+				sd.Session.Delete (cart);
 			} finally {
 				sessionHelper.CommitIfNecessary (sd);
 			}
 		}
 
-		public bool RemoveProduct (Product product)
+		public void UpdateCart (Cart cart)
 		{
-			if (product == null)
-				return false;
-
+			if (cart == null)
+				throw new ArgumentNullException ("cart");
 			var sd = sessionHelper.GetSessionData ();
 			try {
-				sd.Session.Delete (product);
-			} catch {
-				return false;
+				sd.Session.SaveOrUpdate (cart);
 			} finally {
 				sessionHelper.CommitIfNecessary (sd);
 			}
-			return true;
 		}
 
-		public Product GetProduct (int id)
+		public CartItem GetCartItem (int id)
 		{
-			Product product = null;
 			var sd = sessionHelper.GetSessionData ();
 			try {
-				product = sd.Session.Get<Product> (id);
+				return sd.Session.Get<CartItem> (id);
 			} finally {
 				sessionHelper.CommitIfNecessary (sd);
 			}
-			return product;
+		}
+
+		public void AddCartItem (CartItem item)
+		{
+			if (item == null)
+				throw new ArgumentNullException ("item");
+			var sd = sessionHelper.GetSessionData ();
+			try {
+				sd.Session.SaveOrUpdate (item);
+			} finally {
+				sessionHelper.CommitIfNecessary (sd);
+			}
+		}
+
+		public void RemoveCartItem (CartItem item)
+		{
+			if (item == null)
+				throw new ArgumentNullException ("item");
+			var sd = sessionHelper.GetSessionData ();
+			try {
+				sd.Session.Delete (item);
+			} finally {
+				sessionHelper.CommitIfNecessary (sd);
+			}
+		}
+
+		public void UpdateCartItem (CartItem item)
+		{
+			if (item == null)
+				throw new ArgumentNullException ("item");
+			var sd = sessionHelper.GetSessionData ();
+			try {
+				sd.Session.SaveOrUpdate (item);
+			} finally {
+				sessionHelper.CommitIfNecessary (sd);
+			}
+		}
+
+		public Order GetOrder (int id)
+		{
+			var sd = sessionHelper.GetSessionData ();
+			try {
+				return sd.Session.Get<Order> (id);
+			} finally {
+				sessionHelper.CommitIfNecessary (sd);
+			}
+		}
+
+		public void AddOrder (Order order)
+		{
+			if (order == null)
+				throw new ArgumentNullException ("order");
+			var sd = sessionHelper.GetSessionData ();
+			try {
+				sd.Session.SaveOrUpdate (order);
+			} finally {
+				sessionHelper.CommitIfNecessary (sd);
+			}
+		}
+
+		public void RemoveOrder (Order order)
+		{
+			if (order == null)
+				throw new ArgumentNullException ("order");
+			var sd = sessionHelper.GetSessionData ();
+			try {
+				sd.Session.Delete (order);
+			} finally {
+				sessionHelper.CommitIfNecessary (sd);
+			}
 		}
 
 		ISessionFactory sessionFactory;

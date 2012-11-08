@@ -1,5 +1,5 @@
 //
-// When_a_category_is_removed_from_a_store_which_contains_that_category.cs
+// SessionHelper.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,46 +24,54 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using NUnit.Framework;
-using MvcStore.Models;
-using Moq;
-using FluentAssertions;
-using System.Collections.Generic;
+using NHibernate;
 
-namespace MvcStore.Test
+namespace MvcStore
 {
-	[TestFixture()]
-	public class When_a_category_is_removed_from_a_store_which_contains_that_category
+	public class SessionHelper
 	{
-		[SetUp]
-		public void Init ()
+		public SessionHelper (ISessionFactory sessionFactory)
 		{
-			// Arrange
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			cat = new Category ("Cat1");
-			mockRepo.Setup (c => c.RemoveCategory (cat)).Returns (true);
-			mockRepo.SetupGet (c => c.Categories).Returns (new List<Category> ());
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
-
-			// Act
-			result = store.RemoveCategory (cat);
+			if (sessionFactory == null)
+				throw new ArgumentNullException ("sessionFactory");
+			this.sessionFactory = sessionFactory;
 		}
 
-		[Test()]
-		public void the_remove_method_should_return_true ()
+		public void CommitIfNecessary (SessionData sessionData)
 		{
-			result.Should ().BeTrue ();
+			if (sessionData.IsManaged)
+				return;
+			
+			var session = sessionData.Session;
+			if (session != null) {
+				try {
+					session.Transaction.Commit ();
+				} catch {
+					session.Transaction.Rollback ();
+				} finally {
+					if (session.IsOpen) {
+						session.Flush ();
+						session.Dispose ();
+					}
+				}
+			}
+		}
+		
+		public SessionData GetSessionData ()
+		{
+			ISession session;
+			bool managed;
+			try {
+				session = sessionFactory.GetCurrentSession ();
+				managed = true;
+			} catch {
+				session = sessionFactory.OpenSession ();
+				session.BeginTransaction ();
+				managed = false;
+			}
+			return new SessionData (session, managed);
 		}
 
-		[Test()]
-		public void the_store_should_not_contain_the_category ()
-		{
-			store.Categories.Should ().NotContain (cat);
-		}
-
-		Store store;
-		bool result;
-		Category cat;
+		ISessionFactory sessionFactory;
 	}
 }

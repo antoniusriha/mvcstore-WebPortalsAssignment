@@ -30,14 +30,48 @@ namespace MvcStore.Models
 {
 	public class Order : BaseModel
 	{
-		public Order (string name) : base (name) {}
-
-		protected Order () {}
-		
-		public virtual IList<Product> Products {
-			get { return products ?? (products = new List<Product> ()); }
+		public Order (string name) : base (name)
+		{
+			OrderDate = DateTime.Now;
 		}
 
-		List<Product> products;
+		protected Order () {}
+
+		public virtual string Username { get; set; }
+
+		public virtual string FirstName { get; set; }
+
+		public virtual string LastName { get; set; }
+
+		public virtual string Address { get; set; }
+
+		public virtual string City { get; set; }
+
+		public virtual string State { get; set; }
+
+		public virtual string PostalCode { get; set; }
+
+		public virtual string Country { get; set; }
+
+		public virtual string Phone { get; set; }
+
+		public virtual string Email { get; set; }
+
+		public virtual decimal Total { get; set; }
+
+		public virtual DateTime OrderDate { get; protected set; }
+
+		/// <summary>
+		/// Gets the order details. CAUTION. Don't use this property to add order details to
+		/// the order! Use the OderDetail.SetOrder (Order) method instead.
+		/// </summary>
+		/// <value>
+		/// The order details.
+		/// </value>
+		public virtual IList<OrderDetail> OrderDetails {
+			get { return orderDetails ?? (orderDetails = new List<OrderDetail> ()); }
+		}
+
+		List<OrderDetail> orderDetails;
 	}
 }
