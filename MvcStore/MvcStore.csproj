@@ -62,7 +62,8 @@
     <Folder Include="Views\Store\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Models\FNHibernateStore\" />
+    <Folder Include="DataAccess\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -79,7 +80,11 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\IStore.cs" />
+    <Compile Include="Models\IStoreRepository.cs" />
+    <Compile Include="DataAccess\SqliteStoreRepository.cs" />
+    <Compile Include="SessionData.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Models\AccountModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -112,5 +117,13 @@
     <None Include="Location.cs" />
     <None Include="Employee.cs" />
     <None Include="Scripts\jquery-1.8.2.js" />
+    <None Include="..\..\..\..\..\usr\lib\mono\4.0\Mono.Data.Sqlite.dll">
+      <Link>Mono.Data.Sqlite.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <None Include="Views\Account\LogOn.cshtml" />
+    <None Include="Views\Account\Register.cshtml" />
+    <None Include="Views\Account\ChangePassword2.cshtml" />
   </ItemGroup>
 </Project>

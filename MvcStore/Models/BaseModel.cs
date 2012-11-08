@@ -38,25 +38,18 @@ namespace MvcStore.Models
 
 		public virtual int Id { get; protected set; }
 		
-		public virtual string Name {
-			get { return name; }
-			set {
-				FailOnNullOrWhiteSpaceStringParameter (value, "name");
-				name = value;
-			}
-		}
+		public virtual string Name { get; protected set; }
 		
 		public virtual string Description { get; set; }
 
-		protected void FailOnNullOrWhiteSpaceStringParameter (string value, string parameterName)
+		public virtual void SetName (string name)
 		{
-			if (value == null)
-				throw new ArgumentNullException (parameterName);
+			if (name == null)
+				throw new ArgumentNullException ("name");
+			if (string.IsNullOrWhiteSpace (name))
+				throw new ArgumentException ("Name must not be empty or white space.", "name");
 
-			if (string.IsNullOrWhiteSpace (value))
-				throw new ArgumentException (parameterName);
+			Name = name;
 		}
-
-		string name;
 	}
 }

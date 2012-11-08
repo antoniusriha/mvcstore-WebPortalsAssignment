@@ -41,11 +41,16 @@
     </Reference>
     <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="System.Core" />
+    <Reference Include="NHibernate">
+      <HintPath>..\lib\fluentnhibernate\NHibernate.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\DatabaseFixture.cs" />
     <Compile Include="Controller\StoreFixture.cs" />
-    <Compile Include="Model\When_I_add_a_category_to_the_store.cs" />
+    <Compile Include="Model\When_a_category_is_added_to_a_new_store.cs" />
+    <Compile Include="Model\When_a_category_is_removed_from_a_store.cs" />
+    <Compile Include="Database\When_the_database_is_created_and_dummy_data_is_loaded_into_the_db.cs" />
+    <Compile Include="Model\When_the_store_is_initialized.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

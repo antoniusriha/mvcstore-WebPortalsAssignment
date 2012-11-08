@@ -1,5 +1,5 @@
 //
-// Category.cs
+// When_the_store_is_initialized.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -25,26 +25,30 @@
 // THE SOFTWARE.
 using System;
 using System.Collections.Generic;
+using NUnit.Framework;
+using FluentAssertions;
+using Moq;
+using MvcStore.Models;
 
-namespace MvcStore.Models
+namespace MvcStore.Test
 {
-	public class Category : BaseModel
+	[TestFixture()]
+	public class When_the_store_is_initialized
 	{
-		public Category (string name) : base (name) {}
-
-		protected Category () {}
-
-		/// <summary>
-		/// Gets the products. CAUTION. Don't use this property to add products to
-		/// the category! Use the Product.SetCategory (Category) method instead.
-		/// </summary>
-		/// <value>
-		/// The products.
-		/// </value>
-		public virtual IList<Product> Products {
-			get { return products ?? (products = new List<Product> ()); }
+		[SetUp()]
+		public void Init ()
+		{
+			var mockRepo = new Mock<IStoreRepository> ();
+			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
+			store = new Store (mockRepo.Object);
 		}
-		
-		List<Product> products;
+
+		[Test()]
+		public void the_store_must_contain_the_misc_category ()
+		{
+			store.Categories.Should ().Contain (c => c.Name == "Misc");
+		}
+
+		Store store;
 	}
 }

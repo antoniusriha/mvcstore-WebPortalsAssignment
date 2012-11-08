@@ -1,5 +1,5 @@
 //
-// Category.cs
+// IProductRepository.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -25,26 +25,19 @@
 // THE SOFTWARE.
 using System;
 using System.Collections.Generic;
+using MvcStore.Models;
 
 namespace MvcStore.Models
 {
-	public class Category : BaseModel
+	public interface IStoreRepository
 	{
-		public Category (string name) : base (name) {}
+		IList<Category> Categories { get; }
+		void AddCategory (Category category);
+		bool RemoveCategory (Category category);
 
-		protected Category () {}
-
-		/// <summary>
-		/// Gets the products. CAUTION. Don't use this property to add products to
-		/// the category! Use the Product.SetCategory (Category) method instead.
-		/// </summary>
-		/// <value>
-		/// The products.
-		/// </value>
-		public virtual IList<Product> Products {
-			get { return products ?? (products = new List<Product> ()); }
-		}
-		
-		List<Product> products;
+		IList<Product> Products { get; }
+		Product GetProduct (int id);
+		void AddProduct (Product product);
+		bool RemoveProduct (Product product);
 	}
 }

@@ -32,21 +32,32 @@ namespace MvcStore.Models
 {
 	public class Store
 	{
-		public Store (IStore repo)
+		public Store (IStoreRepository repo)
 		{
 			if (repo == null)
 				throw new ArgumentNullException ("repo");
 			this.repo = repo;
+
+			// Setup category Misc, if not already there
+			misc = Categories.SingleOrDefault (c => c.Name == "Misc");
+			if (misc == null) {
+				misc = new Category ("Misc");
+				AddCategory (misc);
+			}
 		}
 
 		public IList<Category> Categories {
-			get { return repo.Categories.ToList (); }
+			get { return repo.Categories; }
 		}
 
 		public void AddProduct (Product product)
 		{
 			if (product == null)
 				throw new ArgumentNullException ("product");
+
+			if (product.Category == null)
+				product.SetCategory (misc);
+
 			repo.AddProduct (product);
 		}
 
@@ -57,21 +68,32 @@ namespace MvcStore.Models
 			return repo.RemoveProduct (product);
 		}
 
+		public Product GetProduct (int id)
+		{
+			return repo.GetProduct (id);
+		}
+
 		public void AddCategory (Category category)
 		{
 			if (category == null)
 				throw new ArgumentNullException ("category");
 			repo.AddCategory (category);
-
 		}
 
-		public void RemoveCategory (Category category)
+		public bool RemoveCategory (Category category)
 		{
-			if (category == null)
-				throw new ArgumentNullException ("category");
+			if (category == null || category == misc)
+				return false;
 
+			return repo.RemoveCategory (category);
 		}
 
-		IStore repo;
+		public int CreateCart ()
+		{
+			throw new NotImplementedException ();
+		}
+
+		IStoreRepository repo;
+		Category misc;
 	}
 }

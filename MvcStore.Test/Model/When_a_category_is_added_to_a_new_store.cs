@@ -1,5 +1,5 @@
 //
-// StoreFixture.cs
+// When_a_category_is_added_to_a_new_store.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -29,34 +29,42 @@ using NUnit.Framework;
 using Moq;
 using MvcStore.Models;
 using FluentAssertions;
+using System.Collections.Generic;
 
 namespace MvcStore.Test.Model
 {
 	[TestFixture()]
-	public class When_a_category_is_added_to_the_store
+	public class When_a_category_is_added_to_a_new_store
 	{
 		[SetUp()]
 		public void Init ()
 		{
 			// Arrange
-			var mockStore = new Mock<IStore> ();
-			store = mockStore.Object;
+			var mockRepo = new Mock<IStoreRepository> ();
 			category = new Category ("Cat1");
-			mockStore.Setup (s => s.AddCategory (category));
-			mockStore.Setup (s => s.Categories.Contains (category)).Returns (true);
+			mockRepo.Setup (s => s.AddCategory (category));
+			mockRepo.SetupGet (r => r.Categories).Returns (new List<Category> { category });
+			store = new Store (mockRepo.Object);
 
 			// Act
-			mockStore.Object.AddCategory (category);
+			store.AddCategory (category);
 		}
 
 		[Test()]
-		public void the_store_should_return_the_category ()
+		public void the_store_should_contain_the_category ()
 		{
 			// Assert
-			store.Categories.First ().Should ().Be (category);
+			store.Categories.Should ().Contain (category);
 		}
 
-		IStore store;
+		[Test()]
+		public void there_should_be_only_one_category_in_the_store ()
+		{
+			// Assert
+			store.Categories.Count.Should ().Be (1);
+		}
+
 		Category category;
+		Store store;
 	}
 }

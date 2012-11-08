@@ -1,5 +1,5 @@
 //
-// IProductRepository.cs
+// TransactionData.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,19 +24,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
-using MvcStore.Models;
+using NHibernate;
 
-namespace MvcStore.Models
+namespace MvcStore
 {
-	public interface IStore
+	public class SessionData
 	{
-		IEnumerable<Category> Categories { get; }
-		void AddCategory (Category category);
-		bool RemoveCategory (Category category);
+		public SessionData (ISession session, bool managed)
+		{
+			if (session == null)
+				throw new ArgumentNullException ("session");
+			IsManaged = managed;
+			Session = session;
+		}
 
-		IEnumerable<Product> Products { get; }
-		void AddProduct (Product product);
-		bool RemoveProduct (Product product);
+		public bool IsManaged { get; private set; }
+
+		public ISession Session { get; private set; }
 	}
 }

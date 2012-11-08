@@ -1,5 +1,5 @@
 //
-// Database.cs
+// When_a_category_is_removed_from_a_store_which_contains_that_category.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -25,18 +25,44 @@
 // THE SOFTWARE.
 using System;
 using NUnit.Framework;
+using MvcStore.Models;
+using Moq;
 using FluentAssertions;
+using System.Collections.Generic;
 
 namespace MvcStore.Test
 {
 	[TestFixture()]
-	public class DatabaseFixture
+	public class When_a_category_is_removed_from_a_store_which_contains_that_category
 	{
-		[Test()]
-		public void SetupDb ()
+		[SetUp]
+		public void Init ()
 		{
-			Action j = delegate { MvcApplication.CreateSessionFactory (); };
-			j.ShouldNotThrow ("NHibernate was not able to map the model to a db schema.");
+			// Arrange
+			var mockRepo = new Mock<IStoreRepository> ();
+			cat = new Category ("Cat1");
+			mockRepo.Setup (c => c.RemoveCategory (cat)).Returns (true);
+			mockRepo.SetupGet (c => c.Categories).Returns (new List<Category> ());
+			store = new Store (mockRepo.Object);
+
+			// Act
+			result = store.RemoveCategory (cat);
 		}
+
+		[Test()]
+		public void the_remove_method_should_return_true ()
+		{
+			result.Should ().BeTrue ();
+		}
+
+		[Test()]
+		public void the_store_should_not_contain_the_category ()
+		{
+			store.Categories.Should ().NotContain (cat);
+		}
+
+		Store store;
+		bool result;
+		Category cat;
 	}
 }

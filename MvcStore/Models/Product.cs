@@ -33,6 +33,16 @@ namespace MvcStore.Models
 
 		protected Product () {}
 
-		public virtual Category Category { get; set; }
+		public virtual Category Category { get; protected set; }
+
+		public virtual decimal Price { get; set; }
+
+		public virtual void SetCategory (Category category)
+		{
+			if (category == null)
+				throw new ArgumentNullException ("category");
+			category.Products.Add (this);
+			Category = category;
+		}
 	}
 }

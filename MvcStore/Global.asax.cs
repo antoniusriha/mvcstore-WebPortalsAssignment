@@ -23,6 +23,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+using System;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -30,11 +31,13 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Context;
 using NHibernate.Tool.hbm2ddl;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using MvcStore.Models;
+using MvcStore.DataAccess;
 
 namespace MvcStore
 {
@@ -42,55 +45,46 @@ namespace MvcStore
 	{
 		const string DbFile = "store.db";
 
+		internal static Store Store { get; private set; }
+
+		static ISessionFactory sessionFactory;
+
 		protected void Application_Start ()
 		{
+			// Setup database: Create NHibernate session factory
+			sessionFactory = CreateSessionFactory();
+
+			// Init db with dummy data
+			LoadDummyData (sessionFactory);
+
+			// Setup store
+			Store = new Store (new SqliteStoreRepository (sessionFactory));
+
 			AreaRegistration.RegisterAllAreas ();
 			RegisterRoutes (RouteTable.Routes);
+		}
 
-			// Setup database
-
-			// create our NHibernate session factory
-			var sessionFactory = CreateSessionFactory();
-			
-//			using (var session = sessionFactory.OpenSession())
-//			{
-//				// populate the database
-//				using (var transaction = session.BeginTransaction())
-//				{
-//					// create a couple of Stores each with some Products and Employees
-//					var barginBasin = new Store { Name = "Bargin Basin" };
-//					var superMart = new Store { Name = "SuperMart" };
-//					
-//					var potatoes = new Product { Name = "Potatoes", Price = 3.60 };
-//					var fish = new Product { Name = "Fish", Price = 4.49 };
-//					var milk = new Product { Name = "Milk", Price = 0.79 };
-//					var bread = new Product { Name = "Bread", Price = 1.29 };
-//					var cheese = new Product { Name = "Cheese", Price = 2.10 };
-//					var waffles = new Product { Name = "Waffles", Price = 2.41 };
-//					
-//					var daisy = new Employee { FirstName = "Daisy", LastName = "Harrison" };
-//					var jack = new Employee { FirstName = "Jack", LastName = "Torrance" };
-//					var sue = new Employee { FirstName = "Sue", LastName = "Walkters" };
-//					var bill = new Employee { FirstName = "Bill", LastName = "Taft" };
-//					var joan = new Employee { FirstName = "Joan", LastName = "Pope" };
-//					
-//					// add products to the stores, there's some crossover in the products in each
-//					// store, because the store-product relationship is many-to-many
-//					AddProductsToStore(barginBasin, potatoes, fish, milk, bread, cheese);
-//					AddProductsToStore(superMart, bread, cheese, waffles);
-//					
-//					// add employees to the stores, this relationship is a one-to-many, so one
-//					// employee can only work at one store at a time
-//					AddEmployeesToStore(barginBasin, daisy, jack, sue);
-//					AddEmployeesToStore(superMart, bill, joan);
-//					
-//					// save both stores, this saves everything else via cascading
-//					session.SaveOrUpdate(barginBasin);
-//					session.SaveOrUpdate(superMart);
-//					
-//					transaction.Commit();
-//				}
-//			}
+		protected void Application_BeginRequest (object sender, EventArgs e)
+		{
+			var session = sessionFactory.OpenSession ();
+			session.BeginTransaction ();
+			ManagedWebSessionContext.Bind (HttpContext.Current, session);
+		}
+		
+		protected void Application_EndRequest (object sender, EventArgs e)
+		{
+			var session = ManagedWebSessionContext.Unbind (HttpContext.Current, sessionFactory);
+			if (session != null) {
+				try {
+					session.Transaction.Commit ();
+				} catch {
+					session.Transaction.Rollback ();
+				} finally {
+					session.Flush ();
+					if (session.IsOpen)
+						session.Dispose ();
+				}
+			}
 		}
 
 		static void RegisterRoutes (RouteCollection routes)
@@ -102,9 +96,37 @@ namespace MvcStore
 				"{controller}/{action}/{id}",
 				new { controller = "Home", action = "Index", id = "" }
 			);
-			routes.MapRoute ("Category", "Category", new {
-				controller = "Home", action = "Category", id = "" }
-			);
+		}
+
+#if DEBUG
+		public
+#endif
+		static void LoadDummyData (ISessionFactory sessionFactory)
+		{
+			using (var session = sessionFactory.OpenSession()) {
+				// populate the database
+				using (var transaction = session.BeginTransaction()) {
+					var food = new Category ("Food");
+
+					var prod = new Product ("Potatoes") { Price = 3.60m };
+					prod.SetCategory (food);
+					prod = new Product ("Fish") { Price = 4.49m };
+					prod.SetCategory (food);
+					prod = new Product ("Milk") { Price = 0.79m };
+					prod.SetCategory (food);
+					prod = new Product ("Bread") { Price = 1.29m };
+					prod.SetCategory (food);
+					prod = new Product ("Cheese") { Price = 2.10m };
+					prod.SetCategory (food);
+					prod = new Product ("Waffles") { Price = 2.41m };
+					prod.SetCategory (food);
+					
+					// save category, this saves everything else via cascading
+					session.SaveOrUpdate (food);
+					
+					transaction.Commit();
+				}
+			}
 		}
 
 #if DEBUG
@@ -138,6 +160,9 @@ namespace MvcStore
 			// delete the existing db on each run
 			if (File.Exists(DbFile))
 				File.Delete(DbFile);
+
+			// This is for session management via HttpContext (ASP.NET sessions)
+			config.SetProperty ("current_session_context_class", "managed_web");
 			
 			// this NHibernate tool takes a configuration (with mapping info in)
 			// and exports a database schema from it

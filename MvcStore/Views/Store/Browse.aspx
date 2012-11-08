@@ -4,4 +4,9 @@
 </asp:Content>
 <asp:Content ID="MainContentContent" ContentPlaceHolderID="MainContent" runat="server">
 	<h2>Browsing Category: <%: Model.Name %></h2>
+	<ul>
+    	<% foreach (var product in Model.Products) { %>
+        	<li><%: Html.ActionLink (product.Name, "Details", new { id = product.Id }) %></li>
+    	<% } %>
+	</ul>
 </asp:Content>
