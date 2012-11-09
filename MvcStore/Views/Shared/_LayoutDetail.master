@@ -1,0 +1,18 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" MasterPageFile="~/Views/Shared/_Layout.master" %>
+
+<asp:Content ID="headGeneralContent" ContentPlaceHolderID="headGeneral" runat="server">
+	<asp:ContentPlaceHolder ID="head" runat="server">
+		<title></title>
+	</asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ID="CartLinkContent" ContentPlaceHolderID="CartLink" runat="server">
+<li><% Html.RenderAction("CartSummary", "ShoppingCart"); %></li>
+</asp:Content>
+
+<asp:Content ID="ContentPaneContent" ContentPlaceHolderID="ContentPane" runat="server">
+	<% Html.RenderAction("CategoryMenu", "Store"); %>
+	<div id="content">
+		<asp:ContentPlaceHolder ID="MainContent" runat="server" />
+	</div>
+</asp:Content>

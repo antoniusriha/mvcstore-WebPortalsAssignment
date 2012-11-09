@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_Layout.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Models.RegisterModel>" %>
-<asp:Content ID="headContent" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="headContent" ContentPlaceHolderID="headGeneral" runat="server">
 	<title>Register</title>
 </asp:Content>
-<asp:Content ID="MainContentContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="MainContentContent" ContentPlaceHolderID="ContentPane" runat="server">
 <h2>Create a New Account</h2>
 <p>
     Use the form below to create a new account. 

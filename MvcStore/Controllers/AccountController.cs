@@ -30,6 +30,8 @@ namespace MvcStore.Controllers
             {
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
+					MigrateShoppingCart(model.UserName);
+					
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     if (IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -38,7 +40,7 @@ namespace MvcStore.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Store");
                     }
                 }
                 else
@@ -58,7 +60,7 @@ namespace MvcStore.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Store");
         }
 
         //
@@ -83,8 +85,10 @@ namespace MvcStore.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
+					MigrateShoppingCart(model.UserName);
+					
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Store");
                 }
                 else
                 {
@@ -211,5 +215,16 @@ namespace MvcStore.Controllers
 				return isLocal;
 			}
 		}
+		
+		private void MigrateShoppingCart(string userName)
+		{
+			// Associate shopping cart items with logged-in user
+			var cart = store.GetCart(HttpContext);
+			
+			cart.MigrateCart(userName);
+			Session[ShoppingCart.CartSessionKey] = userName;
+		}
+		
+		Store store = MvcApplication.Store;
     }
 }

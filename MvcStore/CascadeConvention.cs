@@ -12,12 +12,12 @@ namespace MvcStore
     {
         public void Apply(IManyToOneInstance instance)
         {
-            instance.Cascade.All();
+			instance.Cascade.All ();
         }
 
         public void Apply(IOneToManyCollectionInstance instance)
         {
-            instance.Cascade.All();
+			instance.Cascade.All ();
         }
 
         public void Apply(IManyToManyCollectionInstance instance)

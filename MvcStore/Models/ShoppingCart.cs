@@ -32,6 +32,8 @@ namespace MvcStore.Models
 {
     public class ShoppingCart
     {
+		public const string CartSessionKey = "CartId";
+		
 		public ShoppingCart (HttpContextBase context, IShoppingCartRepository repo)
 		{
 			if (context == null)
@@ -130,24 +132,28 @@ namespace MvcStore.Models
             // Return the OrderId as the confirmation number
             return order.Id;
         }
+		
+		public Order GetOrder (int id)
+		{
+			return cartRepo.GetOrder (id);
+		}
 
         // We're using HttpContextBase to allow access to cookies.
         public string GetCartId (HttpContextBase context)
         {
-			var cartSessionKey = "CartId";
-            if (context.Session[cartSessionKey] == null) {
+            if (context.Session[CartSessionKey] == null) {
                 if (!string.IsNullOrWhiteSpace(context.User.Identity.Name)) {
-                    context.Session[cartSessionKey] = context.User.Identity.Name;
+                    context.Session[CartSessionKey] = context.User.Identity.Name;
                 } else {
                     // Generate a new random GUID using System.Guid class
                     var tempCartId = Guid.NewGuid();
 
                     // Send tempCartId back to client as a cookie
-                    context.Session[cartSessionKey] = tempCartId.ToString();
+                    context.Session[CartSessionKey] = tempCartId.ToString();
                 }
             }
 
-            return context.Session[cartSessionKey].ToString();
+            return context.Session[CartSessionKey].ToString();
         }
 
         // When a user has logged in, migrate their shopping cart to

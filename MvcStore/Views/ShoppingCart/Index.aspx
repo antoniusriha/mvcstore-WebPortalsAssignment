@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_Layout.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.ViewModels.ShoppingCartViewModel>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_LayoutDetail.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.ViewModels.ShoppingCartViewModel>" %>
 <asp:Content ID="headContent" ContentPlaceHolderID="head" runat="server">
 	<title>Shopping Cart</title>
 </asp:Content>

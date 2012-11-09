@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-	<asp:ContentPlaceHolder ID="head" runat="server">
+	<asp:ContentPlaceHolder ID="headGeneral" runat="server">
 		<title></title>
 	</asp:ContentPlaceHolder>
 	<link rel="stylesheet" href="~/Content/Site.css" type="text/css" />
@@ -10,18 +10,20 @@
 </head>
 <body>
 	<div id="header">
-		<h1>MYSTORE</h1>
+		<h1>MVC STORE</h1>
 		<div id="logindisplay">
             <% Html.RenderPartial("LogOnUserControl"); %>
         </div> 
 		<ul id="navlist">
-			<li class="first"><a href="/" id="current">Home</a></li>
-			<li><a href="/Store/">Store</a></li>
+			<li class="first"><a href="<%: Url.Content("~") %>" id="current">Home</a></li>
+			<li><a href="<%: Url.Content("~/Store/") %>">Store</a></li>
+			<asp:ContentPlaceHolder ID="CartLink" runat="server" />
 		</ul>
 	</div>
-	
-	<asp:ContentPlaceHolder ID="MainContent" runat="server">
-		
-	</asp:ContentPlaceHolder>
+	<asp:ContentPlaceHolder ID="ContentPane" runat="server" />
+
+	<div id="footer">
+        powered by <a href="http://www.mono-project.com">MONO</a>
+    </div>
 </body>
 </html>

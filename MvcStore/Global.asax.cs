@@ -108,7 +108,7 @@ namespace MvcStore
 			routes.MapRoute (
 				"Default",
 				"{controller}/{action}/{id}",
-				new { controller = "Home", action = "Index", id = "" }
+				new { controller = "Store", action = "Index", id = "" }
 			);
 		}
 
@@ -166,7 +166,9 @@ namespace MvcStore
 			// supply a configuration instance of your definition to control the automapper.
 			return AutoMap.AssemblyOf<BaseModel>(new StoreAutomappingConfiguration())
 				.IgnoreBase<BaseModel> ()
-				.Conventions.Add<CascadeConvention>();
+				.Conventions.Add<CascadeConvention>()
+				.Override<CartItem> (c => c.HasOne (x => x.Product).Cascade.None ())
+				;
 		}
 
 		static void BuildSchema(Configuration config)

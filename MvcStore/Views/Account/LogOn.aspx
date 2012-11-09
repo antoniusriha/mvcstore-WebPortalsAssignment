@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_Layout.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Models.LogOnModel>" %>
-<asp:Content ID="headContent" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="headContent" ContentPlaceHolderID="headGeneral" runat="server">
 	<title>Log On</title>
 </asp:Content>
-<asp:Content ID="MainContentContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="MainContentContent" ContentPlaceHolderID="ContentPane" runat="server">
 <h2>Log On</h2>
 <p>
     Please enter your user name and password. <%: Html.ActionLink("Register", "Register") %> if you don't have an account.

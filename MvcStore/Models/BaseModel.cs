@@ -24,6 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MvcStore.Models
 {
@@ -36,10 +37,13 @@ namespace MvcStore.Models
 
 		protected BaseModel () {}
 
+		[ScaffoldColumn(false)]
 		public virtual int Id { get; protected set; }
 		
+		[ScaffoldColumn(false)]
 		public virtual string Name { get; protected set; }
 		
+		[ScaffoldColumn(false)]
 		public virtual string Description { get; set; }
 
 		public virtual void SetName (string name)

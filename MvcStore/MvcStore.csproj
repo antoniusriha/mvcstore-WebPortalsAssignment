@@ -67,6 +67,7 @@
     <Folder Include="Views\Account\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\ShoppingCart\" />
+    <Folder Include="Views\Checkout\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -121,6 +123,12 @@
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\ShoppingCart\Index.aspx" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Views\Checkout\AddressAndPayment.aspx" />
+    <Content Include="Views\Checkout\Complete.aspx" />
+    <Content Include="Views\ShoppingCart\CartSummary.ascx" />
+    <Content Include="Views\Store\CategoryMenu.ascx" />
+    <Content Include="Views\Shared\_LayoutDetail.master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

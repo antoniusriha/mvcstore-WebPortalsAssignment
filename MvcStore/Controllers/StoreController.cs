@@ -23,6 +23,15 @@ namespace MvcStore.Controllers
 		{
 			return View (store.GetProduct (id));
 		}
+		
+		//
+		// GET: /Store/GenreMenu
+		[ChildActionOnly]
+		public ActionResult CategoryMenu()
+		{
+			var cats = store.Categories;
+			return PartialView(cats);
+		}
 
 		Store store = MvcApplication.Store;
     }
