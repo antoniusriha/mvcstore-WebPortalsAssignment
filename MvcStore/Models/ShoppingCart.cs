@@ -42,7 +42,7 @@ namespace MvcStore.Models
 
 			// get cart; if non-existent, create cart
 			var cartId = GetCartId (context);
-			var cart = cartRepo.Carts.SingleOrDefault (c => c.Name == cartId);
+			cart = cartRepo.Carts.SingleOrDefault (c => c.Name == cartId);
 			if (cart == null) {
 				cart = new Cart (cartId);
 				cartRepo.AddCart (cart);

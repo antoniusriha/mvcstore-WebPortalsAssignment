@@ -37,6 +37,8 @@ namespace MvcStore.Models
 			UnitPrice = product.Price;
 		}
 
+		protected OrderDetail () {}
+
 		public virtual int Quantity { get; set; }
 
 		public virtual decimal UnitPrice { get; set; }

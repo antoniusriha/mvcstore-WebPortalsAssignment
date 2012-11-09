@@ -36,7 +36,6 @@ namespace MvcStore.DataAccess
 		{
 			if (sessionFactory == null)
 				throw new ArgumentNullException ("sessionFactory");
-			this.sessionFactory = sessionFactory;
 			sessionHelper = new SessionHelper (sessionFactory);
 		}
 
@@ -132,7 +131,6 @@ namespace MvcStore.DataAccess
 			return product;
 		}
 
-		ISessionFactory sessionFactory;
 		SessionHelper sessionHelper;
 	}
 }

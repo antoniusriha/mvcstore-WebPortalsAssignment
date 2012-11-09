@@ -93,12 +93,12 @@ namespace MvcStore.Models
 			return repo.RemoveCategory (category);
 		}
 
-		public ShoppingCart CreateCart (HttpContextBase context)
+		public ShoppingCart GetCart (HttpContextBase context)
 		{
 			return new ShoppingCart (context, cartRepo);
 		}
 
-		public ShoppingCart CreateCart (Controller controller)
+		public ShoppingCart GetCart (Controller controller)
 		{
 			return new ShoppingCart (controller.HttpContext, cartRepo);
 		}
