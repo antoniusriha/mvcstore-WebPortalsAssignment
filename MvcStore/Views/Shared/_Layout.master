@@ -11,14 +11,16 @@
 <body>
 	<div id="header">
 		<h1>MVC STORE</h1>
-		<div id="logindisplay">
-            <% Html.RenderPartial("LogOnUserControl"); %>
-        </div> 
-		<ul id="navlist">
-			<li class="first"><a href="<%: Url.Content("~") %>" id="current">Home</a></li>
-			<li><a href="<%: Url.Content("~/Store/") %>">Store</a></li>
-			<asp:ContentPlaceHolder ID="CartLink" runat="server" />
-		</ul>
+		<div id="headerright">
+			<div id="logindisplay">
+            	<% Html.RenderPartial("LogOnUserControl"); %>
+        	</div> 
+			<ul id="navlist">
+				<li class="first"><a href="<%: Url.Content("~") %>" id="current">Home</a></li>
+				<li><a href="<%: Url.Content("~/Store/") %>">Store</a></li>
+				<asp:ContentPlaceHolder ID="CartLink" runat="server" />
+			</ul>
+		</div>
 	</div>
 	<asp:ContentPlaceHolder ID="ContentPane" runat="server" />
 
