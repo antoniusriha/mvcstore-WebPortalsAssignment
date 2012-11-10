@@ -44,7 +44,15 @@ namespace MvcStore
 {
 	public class MvcApplication : HttpApplication
 	{
-		static readonly string DbFile = Path.Combine ("App_Data", "store.db");
+		static MvcApplication ()
+		{
+			var path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+			DbFile = Path.Combine (path, "store.db");
+			UsersDbFile = Path.Combine (path, "users.db");
+		}
+		
+		static readonly string DbFile;
+		static readonly string UsersDbFile;
 
 		internal static Store Store { get; private set; }
 
@@ -71,10 +79,6 @@ namespace MvcStore
 
 		protected void Application_BeginRequest (object sender, EventArgs e)
 		{
-			// serious hack
-			if (Context.Request.Url.LocalPath.StartsWith ("/Account"))
-				return;
-
 			var session = sessionFactory.OpenSession ();
 			session.BeginTransaction ();
 			ManagedWebSessionContext.Bind (HttpContext.Current, session);
@@ -82,10 +86,6 @@ namespace MvcStore
 		
 		protected void Application_EndRequest (object sender, EventArgs e)
 		{
-			// serious hack
-			if (Context.Request.Url.LocalPath.StartsWith ("/Account"))
-				return;
-
 			var session = ManagedWebSessionContext.Unbind (HttpContext.Current, sessionFactory);
 			if (session != null) {
 				try {
@@ -167,7 +167,7 @@ namespace MvcStore
 			return AutoMap.AssemblyOf<BaseModel>(new StoreAutomappingConfiguration())
 				.IgnoreBase<BaseModel> ()
 				.Conventions.Add<CascadeConvention>()
-				.Override<CartItem> (c => c.HasOne (x => x.Product).Cascade.None ())
+				.Override<CartItem> (map => map.References (x => x.Product).Cascade.None ())
 				;
 		}
 
@@ -187,7 +187,10 @@ namespace MvcStore
 
 		static void SetupAspNetMembershipProviderDb ()
 		{
-			connection = new SqliteConnection ("URI=file:" + Path.Combine (System.Environment.CurrentDirectory, DbFile));
+			if (File.Exists (UsersDbFile))
+				File.Delete (UsersDbFile);
+			
+			connection = new SqliteConnection ("URI=file:" + UsersDbFile);
 			connection.Open ();
 			CreateTables ();
 			connection.Close ();

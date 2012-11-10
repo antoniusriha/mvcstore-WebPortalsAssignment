@@ -136,6 +136,17 @@
     <MonoDevelop>
       <Properties VerifyCodeBehindFields="True" VerifyCodeBehindEvents="True">
         <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+        <WebDeployTargets>
+          <Target Name="">
+            <FileCopier Handler="MonoDevelop.Deployment.LocalFileCopyHandler" TargetDirectory="/srv/www/localhost" ctype="LocalFileCopyConfiguration" />
+          </Target>
+          <Target Name="">
+            <FileCopier Handler="MonoDevelop.Deployment.SshFuseFileCopyHandler" TargetDirectory="antonius@li559-115.members.linode.com:/srv/www/MvcStore" ExtraMountArguments="" ctype="SshFuseFileCopyConfiguration" />
+          </Target>
+          <Target Name="">
+            <FileCopier Handler="MonoDevelop.Deployment.LocalFileCopyHandler" TargetDirectory="/home/antonius/local_deploy" ctype="LocalFileCopyConfiguration" />
+          </Target>
+        </WebDeployTargets>
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
@@ -148,6 +159,14 @@
     <None Include="Scripts\jquery-1.8.2.js" />
     <None Include="..\..\..\..\..\usr\lib\mono\4.0\Mono.Data.Sqlite.dll">
       <Link>Mono.Data.Sqlite.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\store.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="README.txt" />
+    <None Include="App_Data\users.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

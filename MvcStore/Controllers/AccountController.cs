@@ -59,6 +59,7 @@ namespace MvcStore.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
+			Session.Clear ();
 
             return RedirectToAction("Index", "Store");
         }

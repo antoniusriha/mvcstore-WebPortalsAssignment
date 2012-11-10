@@ -22,7 +22,7 @@ namespace MvcStore
 
         public void Apply(IManyToManyCollectionInstance instance)
         {
-            instance.Cascade.All();
+            instance.Cascade.All ();
         }
     }
 }

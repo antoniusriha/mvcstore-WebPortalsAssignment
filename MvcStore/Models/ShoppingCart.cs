@@ -159,9 +159,26 @@ namespace MvcStore.Models
         // When a user has logged in, migrate their shopping cart to
         // be associated with their username
         public void MigrateCart (string userName)
-        {
-			cart.SetName (userName);
-			cartRepo.UpdateCart (cart);
+		{
+			// check if user already has a cart
+			var userCart = cartRepo.Carts.SingleOrDefault (c => c.Name == userName);
+			// if user already has a cart
+			if (userCart != null) {
+				// migrate items
+				var oldCart = cart;
+				cart = userCart;
+				foreach (var item in oldCart.Items) {
+					for (int i = 0; i < item.Count; i++)
+						AddToCart (item.Product);
+				}
+				
+				// delete anonymous cart
+				cartRepo.RemoveCart (oldCart);
+			} else {
+				// just rename the cart
+				cart.SetName (userName);
+				cartRepo.UpdateCart (cart);
+			}
         }
 
 		Cart cart;

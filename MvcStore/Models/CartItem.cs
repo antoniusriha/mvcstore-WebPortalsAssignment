@@ -51,7 +51,16 @@ namespace MvcStore.Models
 		{
 			if (cart == null)
 				throw new ArgumentNullException ("cart");
-			cart.Items.Add (this);
+			
+			// if set, remove from old Cart
+			if (Cart != null && Cart.Items.Contains (this))
+				Cart.Items.Remove (this);
+			
+			// add to new cart, if not already added
+			if (!cart.Items.Contains (this))
+				cart.Items.Add (this);
+			
+			// set cart
 			Cart = cart;
 		}
 	}

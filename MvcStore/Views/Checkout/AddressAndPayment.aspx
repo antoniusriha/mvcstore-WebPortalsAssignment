@@ -15,7 +15,7 @@
     </fieldset>
     <fieldset>
         <legend>Payment</legend>
-        <p>We're running a promotion: all music is free 
+        <p>We're running a promotion: all products are free 
             with the promo code: "FREE"</p>
         <div class="editor-label">
             <%: Html.Label("Promo Code") %>
@@ -28,4 +28,4 @@
     <input type="submit" value="Submit Order" />
 <% } %>
 
-</asp:Content>	
+</asp:Content>
