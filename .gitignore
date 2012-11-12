@@ -5,3 +5,5 @@ test-results/
 *.userprefs
 *.suo
 /MvcStore/store.db
+/MvcStore/App_Data/store.db
+/MvcStore/App_Data/users.db

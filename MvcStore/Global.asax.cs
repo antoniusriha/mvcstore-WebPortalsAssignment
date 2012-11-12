@@ -176,6 +176,8 @@ namespace MvcStore
 			// delete the existing db on each run
 			if (File.Exists(DbFile))
 				File.Delete(DbFile);
+			else
+				Directory.CreateDirectory (Path.GetDirectoryName (DbFile));
 
 			// This is for session management via HttpContext (ASP.NET sessions)
 			config.SetProperty ("current_session_context_class", "managed_web");
@@ -189,6 +191,8 @@ namespace MvcStore
 		{
 			if (File.Exists (UsersDbFile))
 				File.Delete (UsersDbFile);
+			else
+				Directory.CreateDirectory (Path.GetDirectoryName (UsersDbFile));
 			
 			connection = new SqliteConnection ("URI=file:" + UsersDbFile);
 			connection.Open ();
