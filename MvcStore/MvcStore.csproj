@@ -70,13 +70,11 @@
     <Folder Include="Views\Checkout\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MonoSqliteDriver.cs" />
     <Compile Include="CascadeConvention.cs" />
-    <Compile Include="Controllers\HomeViewModel.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="StoreAutomappingConfiguration.cs" />
     <Compile Include="Models\Store.cs" />
@@ -103,15 +101,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />
     <Content Include="Views\Shared\_Layout.master" />
     <Content Include="Views\Store\Index.aspx" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\Images\home-showcase.png" />
-    <Content Include="Content\Images\logo.png" />
-    <Content Include="Content\Images\placeholder.gif" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Views\Store\Details.aspx" />
     <Content Include="Views\Store\Browse.aspx" />
@@ -151,11 +145,6 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <None Include="Program.cs" />
-    <None Include="Product.cs" />
-    <None Include="Store.cs" />
-    <None Include="Location.cs" />
-    <None Include="Employee.cs" />
     <None Include="Scripts\jquery-1.8.2.js" />
     <None Include="..\..\..\..\..\usr\lib\mono\4.0\Mono.Data.Sqlite.dll">
       <Link>Mono.Data.Sqlite.dll</Link>
