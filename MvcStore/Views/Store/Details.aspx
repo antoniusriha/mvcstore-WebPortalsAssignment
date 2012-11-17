@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_LayoutDetail.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Models.Product>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_LayoutDetail.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Backend.Models.Product>" %>
 <asp:Content ID="headContent" ContentPlaceHolderID="head" runat="server">
 	<title>Produkt - <%: Model.Name %></title>
 </asp:Content>

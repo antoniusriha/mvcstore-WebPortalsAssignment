@@ -1,5 +1,5 @@
 //
-// When_the_store_is_initialized.cs
+// BaseModel.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,32 +24,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using MvcStore.Backend.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace MvcStore.Test
+namespace MvcStore.Backend.Models
 {
-	[TestFixture()]
-	public class When_the_store_is_initialized
+	public abstract class BaseModel
 	{
-		[SetUp()]
-		public void Init ()
+		public BaseModel (string name)
 		{
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
+			Name = name;
 		}
 
-		[Test()]
-		public void the_store_must_contain_the_misc_category ()
-		{
-			store.Categories.Should ().Contain (c => c.Name == "Misc");
-		}
+		protected BaseModel () {}
 
-		Store store;
+		[ScaffoldColumn(false)]
+		public virtual int Id { get; protected set; }
+		
+		[ScaffoldColumn(false)]
+		public virtual string Name { get; protected set; }
+		
+		[ScaffoldColumn(false)]
+		public virtual string Description { get; set; }
+
+		public virtual void SetName (string name)
+		{
+			if (name == null)
+				throw new ArgumentNullException ("name");
+			if (string.IsNullOrWhiteSpace (name))
+				throw new ArgumentException ("Name must not be empty or white space.", "name");
+
+			Name = name;
+		}
 	}
 }

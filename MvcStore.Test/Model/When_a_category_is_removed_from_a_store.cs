@@ -25,7 +25,7 @@
 // THE SOFTWARE.
 using System;
 using NUnit.Framework;
-using MvcStore.Models;
+using MvcStore.Backend.Models;
 using Moq;
 using FluentAssertions;
 using System.Collections.Generic;

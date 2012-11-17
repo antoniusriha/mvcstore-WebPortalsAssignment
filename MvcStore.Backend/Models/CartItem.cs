@@ -1,5 +1,5 @@
 //
-// When_the_store_is_initialized.cs
+// Cart.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,32 +24,44 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using MvcStore.Backend.Models;
 
-namespace MvcStore.Test
+namespace MvcStore.Backend.Models
 {
-	[TestFixture()]
-	public class When_the_store_is_initialized
+	public class CartItem : BaseModel
 	{
-		[SetUp()]
-		public void Init ()
+		public CartItem (Product product) : base ("CartItem")
 		{
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
+			if (product == null)
+				throw new ArgumentNullException ("product");
+			Product = product;
+			DateCreated = DateTime.Now;
 		}
 
-		[Test()]
-		public void the_store_must_contain_the_misc_category ()
-		{
-			store.Categories.Should ().Contain (c => c.Name == "Misc");
-		}
+		protected CartItem () {}
 
-		Store store;
+		public virtual Cart Cart { get; protected set; }
+
+		public virtual int Count { get; set; }
+
+		public virtual DateTime DateCreated { get; protected set; }
+
+		public virtual Product Product { get; protected set; }
+
+		public virtual void SetCart (Cart cart)
+		{
+			if (cart == null)
+				throw new ArgumentNullException ("cart");
+			
+			// if set, remove from old Cart
+			if (Cart != null && Cart.Items.Contains (this))
+				Cart.Items.Remove (this);
+			
+			// add to new cart, if not already added
+			if (!cart.Items.Contains (this))
+				cart.Items.Add (this);
+			
+			// set cart
+			Cart = cart;
+		}
 	}
 }

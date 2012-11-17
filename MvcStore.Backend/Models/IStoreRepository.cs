@@ -1,5 +1,5 @@
 //
-// When_the_store_is_initialized.cs
+// IProductRepository.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -25,31 +25,18 @@
 // THE SOFTWARE.
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using MvcStore.Backend.Models;
 
-namespace MvcStore.Test
+namespace MvcStore.Backend.Models
 {
-	[TestFixture()]
-	public class When_the_store_is_initialized
+	public interface IStoreRepository
 	{
-		[SetUp()]
-		public void Init ()
-		{
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
-		}
+		IList<Category> Categories { get; }
+		void AddCategory (Category category);
+		bool RemoveCategory (Category category);
 
-		[Test()]
-		public void the_store_must_contain_the_misc_category ()
-		{
-			store.Categories.Should ().Contain (c => c.Name == "Misc");
-		}
-
-		Store store;
+		IList<Product> Products { get; }
+		Product GetProduct (int id);
+		void AddProduct (Product product);
+		bool RemoveProduct (Product product);
 	}
 }

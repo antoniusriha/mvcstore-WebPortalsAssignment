@@ -1,5 +1,5 @@
 //
-// When_the_store_is_initialized.cs
+// SessionHelper.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,32 +24,54 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using MvcStore.Backend.Models;
+using NHibernate;
 
-namespace MvcStore.Test
+namespace MvcStore.Backend
 {
-	[TestFixture()]
-	public class When_the_store_is_initialized
+	public class SessionHelper
 	{
-		[SetUp()]
-		public void Init ()
+		public SessionHelper (ISessionFactory sessionFactory)
 		{
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
+			if (sessionFactory == null)
+				throw new ArgumentNullException ("sessionFactory");
+			this.sessionFactory = sessionFactory;
 		}
 
-		[Test()]
-		public void the_store_must_contain_the_misc_category ()
+		public void CommitIfNecessary (SessionData sessionData)
 		{
-			store.Categories.Should ().Contain (c => c.Name == "Misc");
+			if (sessionData.IsManaged)
+				return;
+			
+			var session = sessionData.Session;
+			if (session != null) {
+				try {
+					session.Transaction.Commit ();
+				} catch {
+					session.Transaction.Rollback ();
+				} finally {
+					if (session.IsOpen) {
+						session.Flush ();
+						session.Dispose ();
+					}
+				}
+			}
+		}
+		
+		public SessionData GetSessionData ()
+		{
+			ISession session;
+			bool managed;
+			try {
+				session = sessionFactory.GetCurrentSession ();
+				managed = true;
+			} catch {
+				session = sessionFactory.OpenSession ();
+				session.BeginTransaction ();
+				managed = false;
+			}
+			return new SessionData (session, managed);
 		}
 
-		Store store;
+		ISessionFactory sessionFactory;
 	}
 }

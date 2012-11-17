@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using MvcStore.Models;
+using MvcStore.Backend.Models;
 using MvcStore.ViewModels;
 
 namespace MvcStore.Controllers

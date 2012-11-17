@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using MvcStore.Models;
+using MvcStore.Backend.Models;
 
 namespace MvcStore.ViewModels
 {

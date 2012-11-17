@@ -1,5 +1,5 @@
 //
-// When_the_store_is_initialized.cs
+// Product.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,32 +24,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using MvcStore.Backend.Models;
 
-namespace MvcStore.Test
+namespace MvcStore.Backend.Models
 {
-	[TestFixture()]
-	public class When_the_store_is_initialized
+	public class Product : BaseModel
 	{
-		[SetUp()]
-		public void Init ()
-		{
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
-		}
+		public Product (string name) : base (name) {}
 
-		[Test()]
-		public void the_store_must_contain_the_misc_category ()
-		{
-			store.Categories.Should ().Contain (c => c.Name == "Misc");
-		}
+		protected Product () {}
 
-		Store store;
+		public virtual Category Category { get; protected set; }
+
+		public virtual decimal Price { get; set; }
+
+		public virtual void SetCategory (Category category)
+		{
+			if (category == null)
+				throw new ArgumentNullException ("category");
+			category.Products.Add (this);
+			Category = category;
+		}
 	}
 }

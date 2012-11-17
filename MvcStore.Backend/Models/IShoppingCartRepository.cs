@@ -1,5 +1,5 @@
 //
-// When_the_store_is_initialized.cs
+// IShoppingCartRepository.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -25,31 +25,23 @@
 // THE SOFTWARE.
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using MvcStore.Backend.Models;
 
-namespace MvcStore.Test
+namespace MvcStore.Backend.Models
 {
-	[TestFixture()]
-	public class When_the_store_is_initialized
+	public interface IShoppingCartRepository
 	{
-		[SetUp()]
-		public void Init ()
-		{
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
-		}
+		IList<Cart> Carts { get; }
+		void AddCart (Cart cart);
+		void RemoveCart (Cart cart);
+		void UpdateCart (Cart cart);
 
-		[Test()]
-		public void the_store_must_contain_the_misc_category ()
-		{
-			store.Categories.Should ().Contain (c => c.Name == "Misc");
-		}
+		CartItem GetCartItem (int id);
+		void AddCartItem (CartItem item);
+		void RemoveCartItem (CartItem item);
+		void UpdateCartItem (CartItem item);
 
-		Store store;
+		Order GetOrder (int id);
+		void AddOrder (Order order);
+		void RemoveOrder (Order order);
 	}
 }

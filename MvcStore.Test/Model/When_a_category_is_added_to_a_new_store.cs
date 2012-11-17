@@ -27,7 +27,7 @@ using System;
 using System.Linq;
 using NUnit.Framework;
 using Moq;
-using MvcStore.Models;
+using MvcStore.Backend.Models;
 using FluentAssertions;
 using System.Collections.Generic;
 

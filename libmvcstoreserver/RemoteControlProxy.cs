@@ -1,7 +1,8 @@
 //
-// When_the_store_is_initialized.cs
+// RemoteControlProxy.cs
 //
-// Author:
+// Authors:
+//       Unknown contributor
 //       Antonius Riha <antoniusriha@gmail.com>
 //
 // Copyright (c) 2012 Antonius Riha
@@ -24,32 +25,37 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using MvcStore.Backend.Models;
+using DBus;
+using org.freedesktop.DBus;
 
-namespace MvcStore.Test
+namespace MvcStore.Backend
 {
-	[TestFixture()]
-	public class When_the_store_is_initialized
+	public static class RemoteControlProxy
 	{
-		[SetUp()]
-		public void Init ()
-		{
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
+		const string Path = "/org/gnome/MvcStore/RemoteControl";
+		const string Namespace = "org.gnome.MvcStore";
+		
+		public static RemoteControl GetInstance () {
+			BusG.Init ();
+			
+			var session = Bus.Session;
+			if (!session.NameHasOwner (Namespace))
+				session.StartServiceByName (Namespace);
+			
+			return session.GetObject<RemoteControl> (Namespace, new ObjectPath (Path));
 		}
-
-		[Test()]
-		public void the_store_must_contain_the_misc_category ()
-		{
-			store.Categories.Should ().Contain (c => c.Name == "Misc");
+		
+		public static RemoteControl Register () {
+			BusG.Init ();
+			
+			var remoteControl = new RemoteControl ();
+			var session = Bus.Session;
+			session.Register (Namespace, new ObjectPath (Path), remoteControl);
+			
+			if (session.RequestName (Namespace) != RequestNameReply.PrimaryOwner)
+				return null;
+			
+			return remoteControl;
 		}
-
-		Store store;
 	}
 }

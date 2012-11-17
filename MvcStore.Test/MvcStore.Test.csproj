@@ -39,7 +39,6 @@
     <Reference Include="Moq">
       <HintPath>..\lib\moq\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="System.Core" />
     <Reference Include="NHibernate">
       <HintPath>..\lib\fluentnhibernate\NHibernate.dll</HintPath>
@@ -62,6 +61,10 @@
     <ProjectReference Include="..\MvcStore\MvcStore.csproj">
       <Project>{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}</Project>
       <Name>MvcStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcStore.Backend\MvcStore.Backend.csproj">
+      <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
+      <Name>MvcStore.Backend</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

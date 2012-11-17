@@ -1,5 +1,5 @@
 //
-// When_the_store_is_initialized.cs
+// Global.asax.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -23,33 +23,49 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
-using System.Collections.Generic;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using MvcStore.Backend.Models;
+using System.Collections;
+using System.ComponentModel;
+using System.Web;
+using System.Web.SessionState;
 
-namespace MvcStore.Test
+namespace MvcStore.Admin
 {
-	[TestFixture()]
-	public class When_the_store_is_initialized
+	public class Global : System.Web.HttpApplication
 	{
-		[SetUp()]
-		public void Init ()
+		
+		protected virtual void Application_Start (Object sender, EventArgs e)
 		{
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
 		}
-
-		[Test()]
-		public void the_store_must_contain_the_misc_category ()
+		
+		protected virtual void Session_Start (Object sender, EventArgs e)
 		{
-			store.Categories.Should ().Contain (c => c.Name == "Misc");
 		}
-
-		Store store;
+		
+		protected virtual void Application_BeginRequest (Object sender, EventArgs e)
+		{
+		}
+		
+		protected virtual void Application_EndRequest (Object sender, EventArgs e)
+		{
+		}
+		
+		protected virtual void Application_AuthenticateRequest (Object sender, EventArgs e)
+		{
+		}
+		
+		protected virtual void Application_Error (Object sender, EventArgs e)
+		{
+		}
+		
+		protected virtual void Session_End (Object sender, EventArgs e)
+		{
+		}
+		
+		protected virtual void Application_End (Object sender, EventArgs e)
+		{
+		}
 	}
 }
+

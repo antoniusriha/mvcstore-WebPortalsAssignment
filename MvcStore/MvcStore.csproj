@@ -44,7 +44,6 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="FluentNHibernate">
       <HintPath>..\lib\fluentnhibernate\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -58,46 +57,27 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
-    <Folder Include="Models\" />
     <Folder Include="Scripts\" />
     <Folder Include="Views\Store\" />
     <Folder Include="Views\Shared\" />
-    <Folder Include="App_Data\" />
-    <Folder Include="DataAccess\" />
     <Folder Include="Views\Account\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\ShoppingCart\" />
     <Folder Include="Views\Checkout\" />
+    <Folder Include="Content\Images\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MonoSqliteDriver.cs" />
-    <Compile Include="CascadeConvention.cs" />
     <Compile Include="Controllers\StoreController.cs" />
-    <Compile Include="StoreAutomappingConfiguration.cs" />
-    <Compile Include="Models\Store.cs" />
-    <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\IStoreRepository.cs" />
-    <Compile Include="DataAccess\SqliteStoreRepository.cs" />
-    <Compile Include="SessionData.cs" />
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Models\OrderDetail.cs" />
-    <Compile Include="Models\ShoppingCart.cs" />
-    <Compile Include="DataAccess\SqliteShoppingCartRepository.cs" />
-    <Compile Include="Models\IShoppingCartRepository.cs" />
-    <Compile Include="Models\CartItem.cs" />
-    <Compile Include="Models\Cart.cs" />
-    <Compile Include="DataAccess\SessionHelper.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -146,23 +126,12 @@
   </ProjectExtensions>
   <ItemGroup>
     <None Include="Scripts\jquery-1.8.2.js" />
-    <None Include="..\..\..\..\..\usr\lib\mono\4.0\Mono.Data.Sqlite.dll">
-      <Link>Mono.Data.Sqlite.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="App_Data\store.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
-    </None>
     <None Include="README.txt" />
-    <None Include="App_Data\users.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SQLite-Providers\SQLiteProvider.csproj">
-      <Project>{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}</Project>
-      <Name>SQLiteProvider</Name>
+    <ProjectReference Include="..\MvcStore.Backend\MvcStore.Backend.csproj">
+      <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
+      <Name>MvcStore.Backend</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

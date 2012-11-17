@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_LayoutDetail.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Models.Order>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_LayoutDetail.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Backend.Models.Order>" %>
 <asp:Content ID="headContent" ContentPlaceHolderID="head" runat="server">
 	<title>Address And Payment</title>	
 </asp:Content>

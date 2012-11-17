@@ -1,5 +1,5 @@
 //
-// When_the_store_is_initialized.cs
+// OrderDetail.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,32 +24,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
-using NUnit.Framework;
-using FluentAssertions;
-using Moq;
-using MvcStore.Backend.Models;
 
-namespace MvcStore.Test
+namespace MvcStore.Backend.Models
 {
-	[TestFixture()]
-	public class When_the_store_is_initialized
+	public class OrderDetail : BaseModel
 	{
-		[SetUp()]
-		public void Init ()
+		public OrderDetail (Product product) : base ("OrderDetail")
 		{
-			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
-			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
-			store = new Store (mockRepo.Object, mockCartRepo.Object);
+			if (product == null)
+				throw new ArgumentNullException ("product");
+			Product = product;
+			UnitPrice = product.Price;
 		}
 
-		[Test()]
-		public void the_store_must_contain_the_misc_category ()
-		{
-			store.Categories.Should ().Contain (c => c.Name == "Misc");
-		}
+		protected OrderDetail () {}
 
-		Store store;
+		public virtual int Quantity { get; set; }
+
+		public virtual decimal UnitPrice { get; set; }
+
+		public virtual Product Product { get; protected set; }
+
+		public virtual Order Order { get; protected set; }
+
+		public virtual void SetOrder (Order order)
+		{
+			if (order == null)
+				throw new ArgumentNullException ("order");
+			order.OrderDetails.Add (this);
+			Order = order;
+		}
 	}
 }

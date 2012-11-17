@@ -28,7 +28,8 @@ using NUnit.Framework;
 using FluentAssertions;
 using NHibernate;
 using NHibernate.Persister.Entity;
-using MvcStore.Models;
+using MvcStore.Backend;
+using MvcStore.Backend.Models;
 
 namespace MvcStore.Test
 {
@@ -38,8 +39,9 @@ namespace MvcStore.Test
 		[SetUp()]
 		public void Init ()
 		{
-			sessionFactory = MvcApplication.CreateSessionFactory ();
-			MvcApplication.LoadDummyData (sessionFactory);
+			MvcStoreApplication.InitDbs ("store.db", "users.db");
+			sessionFactory = MvcStoreApplication.CreateSessionFactory ();
+			MvcStoreApplication.LoadDummyData (sessionFactory);
 		}
 
 		[Test()]
