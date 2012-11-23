@@ -34,11 +34,51 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="web.config" />
     <Content Include="Default.aspx" />
+    <Content Include="Site.master" />
+    <Content Include="BasicReporting\DeclarativeParams.aspx" />
+    <Content Include="BasicReporting\Default.aspx" />
+    <Content Include="BasicReporting\ProgrammaticParams.aspx" />
+    <Content Include="BasicReporting\SimpleDisplay.aspx" />
+    <Content Include="CustomFormatting\CustomColors.aspx" />
+    <Content Include="CustomFormatting\Default.aspx" />
+    <Content Include="CustomFormatting\DetailsViewTemplateField.aspx" />
+    <Content Include="CustomFormatting\FormView.aspx" />
+    <Content Include="CustomFormatting\GridViewTemplateField.aspx" />
+    <Content Include="CustomFormatting\SummaryDataInFooter.aspx" />
+    <Content Include="Filtering\Default.aspx" />
+    <Content Include="Filtering\DetailsBySelecting.aspx" />
+    <Content Include="Filtering\FilterByDropDownList.aspx" />
+    <Content Include="Filtering\MasterDetailsDetails.aspx" />
+    <Content Include="Web.sitemap" />
+    <Content Include="UserControls\SectionLevelTutorialListing.ascx" />
+    <Content Include="ProductManagement\Default.aspx" />
+    <Content Include="UserManagement\Default.aspx" />
+    <Content Include="UserManagement\Roles.aspx" />
+    <Content Include="UserManagement\Users.aspx" />
+    <Content Include="ProductManagement\Categories.aspx" />
+    <Content Include="ProductManagement\Products.aspx" />
+    <Content Include="ProductManagement\Carts.aspx" />
+    <Content Include="ProductManagement\Orders.aspx" />
+    <Content Include="App_Themes\DataWebControls\DetailsView.skin" />
+    <Content Include="App_Themes\DataWebControls\GridView.skin" />
+    <Content Include="Styles.css" />
+    <Content Include="EditInsertDelete\Basics.aspx" />
+    <Content Include="EditInsertDelete\ConfirmationOnDelete.aspx" />
+    <Content Include="EditInsertDelete\CustomizedUI.aspx" />
+    <Content Include="EditInsertDelete\DataModificationEvents.aspx" />
+    <Content Include="EditInsertDelete\Default.aspx" />
+    <Content Include="EditInsertDelete\ErrorHandling.aspx" />
+    <Content Include="EditInsertDelete\OptimisticConcurrency.aspx" />
+    <Content Include="EditInsertDelete\UIValidation.aspx" />
+    <Content Include="EditInsertDelete\UserLevelAccess.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -50,6 +90,178 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StoreProxy.cs" />
+    <Compile Include="Site.master.cs">
+      <DependentUpon>Site.master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.master.designer.cs">
+      <DependentUpon>Site.master</DependentUpon>
+    </Compile>
+    <Compile Include="BasicReporting\DeclarativeParams.aspx.cs">
+      <DependentUpon>DeclarativeParams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BasicReporting\DeclarativeParams.aspx.designer.cs">
+      <DependentUpon>DeclarativeParams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BasicReporting\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BasicReporting\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BasicReporting\ProgrammaticParams.aspx.cs">
+      <DependentUpon>ProgrammaticParams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BasicReporting\ProgrammaticParams.aspx.designer.cs">
+      <DependentUpon>ProgrammaticParams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BasicReporting\SimpleDisplay.aspx.cs">
+      <DependentUpon>SimpleDisplay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BasicReporting\SimpleDisplay.aspx.designer.cs">
+      <DependentUpon>SimpleDisplay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\CustomColors.aspx.cs">
+      <DependentUpon>CustomColors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\CustomColors.aspx.designer.cs">
+      <DependentUpon>CustomColors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\DetailsViewTemplateField.aspx.cs">
+      <DependentUpon>DetailsViewTemplateField.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\DetailsViewTemplateField.aspx.designer.cs">
+      <DependentUpon>DetailsViewTemplateField.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\FormView.aspx.cs">
+      <DependentUpon>FormView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\FormView.aspx.designer.cs">
+      <DependentUpon>FormView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\GridViewTemplateField.aspx.cs">
+      <DependentUpon>GridViewTemplateField.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\GridViewTemplateField.aspx.designer.cs">
+      <DependentUpon>GridViewTemplateField.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\SummaryDataInFooter.aspx.cs">
+      <DependentUpon>SummaryDataInFooter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomFormatting\SummaryDataInFooter.aspx.designer.cs">
+      <DependentUpon>SummaryDataInFooter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Filtering\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Filtering\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Filtering\DetailsBySelecting.aspx.cs">
+      <DependentUpon>DetailsBySelecting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Filtering\DetailsBySelecting.aspx.designer.cs">
+      <DependentUpon>DetailsBySelecting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Filtering\FilterByDropDownList.aspx.cs">
+      <DependentUpon>FilterByDropDownList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Filtering\FilterByDropDownList.aspx.designer.cs">
+      <DependentUpon>FilterByDropDownList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Filtering\MasterDetailsDetails.aspx.cs">
+      <DependentUpon>MasterDetailsDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Filtering\MasterDetailsDetails.aspx.designer.cs">
+      <DependentUpon>MasterDetailsDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SectionLevelTutorialListing.ascx.cs">
+      <DependentUpon>SectionLevelTutorialListing.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SectionLevelTutorialListing.ascx.designer.cs">
+      <DependentUpon>SectionLevelTutorialListing.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagement\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagement\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagement\Roles.aspx.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagement\Roles.aspx.designer.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagement\Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagement\Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement\Categories.aspx.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement\Categories.aspx.designer.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement\Carts.aspx.cs">
+      <DependentUpon>Carts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement\Carts.aspx.designer.cs">
+      <DependentUpon>Carts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement\Orders.aspx.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductManagement\Orders.aspx.designer.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditInsertDelete\Basics.aspx.cs">
+      <DependentUpon>Basics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditInsertDelete\ConfirmationOnDelete.aspx.cs">
+      <DependentUpon>ConfirmationOnDelete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditInsertDelete\CustomizedUI.aspx.cs">
+      <DependentUpon>CustomizedUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditInsertDelete\DataModificationEvents.aspx.cs">
+      <DependentUpon>DataModificationEvents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditInsertDelete\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditInsertDelete\ErrorHandling.aspx.cs">
+      <DependentUpon>ErrorHandling.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditInsertDelete\OptimisticConcurrency.aspx.cs">
+      <DependentUpon>OptimisticConcurrency.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditInsertDelete\UIValidation.aspx.cs">
+      <DependentUpon>UIValidation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditInsertDelete\UserLevelAccess.aspx.cs">
+      <DependentUpon>UserLevelAccess.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -60,4 +272,25 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\MvcStore.Backend\MvcStore.Backend.csproj">
+      <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
+      <Name>MvcStore.Backend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AspSQLProvider\src\NauckIT.PostgreSQLProvider\PostgreSQLProvider.csproj">
+      <Project>{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}</Project>
+      <Name>PostgreSQLProvider</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BasicReporting\" />
+    <Folder Include="Filtering\" />
+    <Folder Include="CustomFormatting\" />
+    <Folder Include="UserControls\" />
+    <Folder Include="ProductManagement\" />
+    <Folder Include="UserManagement\" />
+    <Folder Include="App_Themes\" />
+    <Folder Include="App_Themes\DataWebControls\" />
+    <Folder Include="EditInsertDelete\" />
+  </ItemGroup>
 </Project>

@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStore.Admin", "MvcStore.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStore.Backend", "MvcStore.Backend\MvcStore.Backend.csproj", "{DE118DF6-AD28-4395-95F2-4708D7FE8521}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostgreSQLProvider", "AspSQLProvider\src\NauckIT.PostgreSQLProvider\PostgreSQLProvider.csproj", "{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootstrapDatabase", "BootstrapDatabase\BootstrapDatabase.csproj", "{8E460238-443D-418B-8803-D5194EE7487F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E460238-443D-418B-8803-D5194EE7487F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E460238-443D-418B-8803-D5194EE7487F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E460238-443D-418B-8803-D5194EE7487F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E460238-443D-418B-8803-D5194EE7487F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE118DF6-AD28-4395-95F2-4708D7FE8521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE118DF6-AD28-4395-95F2-4708D7FE8521}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE118DF6-AD28-4395-95F2-4708D7FE8521}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,8 +39,12 @@ Global
 		{F3BF61C0-4678-4835-B37F-8153B1D6DB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3BF61C0-4678-4835-B37F-8153B1D6DB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3BF61C0-4678-4835-B37F-8153B1D6DB65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MvcStore\MvcStore.csproj
+		StartupItem = MvcStore.Admin\MvcStore.Admin.csproj
 	EndGlobalSection
 EndGlobal

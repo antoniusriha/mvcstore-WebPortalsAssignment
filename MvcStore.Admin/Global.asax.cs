@@ -29,14 +29,23 @@ using System.Collections;
 using System.ComponentModel;
 using System.Web;
 using System.Web.SessionState;
+using System.Configuration;
+using MvcStore.Backend;
+using MvcStore.Backend.Models;
 
 namespace MvcStore.Admin
 {
 	public class Global : System.Web.HttpApplication
 	{
+		internal static Store Store { get; private set; }
 		
 		protected virtual void Application_Start (Object sender, EventArgs e)
 		{
+			var connectionString = ConfigurationManager.ConnectionStrings ["AspSQLProvider"];
+			MvcStoreApplication.InitDb (connectionString.ConnectionString);
+			
+			// Setup store
+			Store = MvcStoreApplication.GetStore ();
 		}
 		
 		protected virtual void Session_Start (Object sender, EventArgs e)
@@ -45,10 +54,12 @@ namespace MvcStore.Admin
 		
 		protected virtual void Application_BeginRequest (Object sender, EventArgs e)
 		{
+			MvcStoreApplication.OpenSession (HttpContext.Current);
 		}
 		
 		protected virtual void Application_EndRequest (Object sender, EventArgs e)
 		{
+			MvcStoreApplication.CloseSession (HttpContext.Current);
 		}
 		
 		protected virtual void Application_AuthenticateRequest (Object sender, EventArgs e)
@@ -68,4 +79,3 @@ namespace MvcStore.Admin
 		}
 	}
 }
-

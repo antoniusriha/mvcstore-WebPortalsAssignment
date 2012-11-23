@@ -29,6 +29,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using MvcStore.Backend;
 using MvcStore.Backend.Models;
+using System.Configuration;
 
 namespace MvcStore
 {
@@ -38,9 +39,12 @@ namespace MvcStore
 
 		protected void Application_Start ()
 		{
+			var connectionString = ConfigurationManager.ConnectionStrings ["AspSQLProvider"];
+			MvcStoreApplication.InitDb (connectionString.ConnectionString);
+			
 			// Setup store
 			Store = MvcStoreApplication.GetStore ();
-
+			
 			AreaRegistration.RegisterAllAreas ();
 			RegisterRoutes (RouteTable.Routes);
 		}

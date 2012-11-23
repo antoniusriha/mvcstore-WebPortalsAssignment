@@ -39,7 +39,7 @@ namespace MvcStore.Test
 		[SetUp()]
 		public void Init ()
 		{
-			MvcStoreApplication.InitDbs ("store.db", "users.db");
+			MvcStoreApplication.InitDb ("store.db", "users.db");
 			sessionFactory = MvcStoreApplication.CreateSessionFactory ();
 			MvcStoreApplication.LoadDummyData (sessionFactory);
 		}

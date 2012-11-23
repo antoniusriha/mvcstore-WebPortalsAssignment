@@ -1,12 +1,24 @@
-<%@ Page Language="C#" Inherits="MvcStore.Admin.Default" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head runat="server">
-	<title>Default</title>
-</head>
-<body>
-	<form id="form1" runat="server">
-		<asp:Button id="button1" runat="server" Text="Click me!" OnClick="button1Clicked" />
-	</form>
-</body>
-</html>
+<%@ Page Language="C#" Inherits="MvcStore.Admin.Default" MasterPageFile="~/Site.master" Title="Home" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
+    <h1>Welcome to the Working with Data Tutorial Site</h1>
+
+    <p>This site is being built as part of a set of tutorials that illustrate some of the new data access and databinding features in ASP.NET 2.0 and Visual Web Developer.</p>
+
+    <p>Over time, it will include a host of samples that demonstrate:</p>
+    
+    <ul>
+        <li>Building a DAL (data access layer),</li>
+        <li>Using strongly typed TableAdapters and DataTables</li>
+        <li>Master-Detail reports</li>
+        <li>Filtering</li>
+        <li>Paging,</li>
+        <li>Two-way databinding,</li>
+        <li>Editing,</li>
+        <li>Deleting,</li>
+        <li>Inserting,</li>
+        <li>Hierarchical data browsing,</li>
+        <li>Hierarchical drill-down,</li>
+        <li>Optimistic concurrency,</li>
+        <li>And more!</li>
+    </ul>	
+</asp:Content>

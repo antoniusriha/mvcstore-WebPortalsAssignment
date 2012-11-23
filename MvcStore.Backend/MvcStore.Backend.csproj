@@ -66,7 +66,6 @@
     <Compile Include="StoreAutomappingConfiguration.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MvcStoreMembershipProvider.cs" />
     <Compile Include="MvcStoreApplication.cs" />
     <Compile Include="DataAccess\NHibernateShoppingCartRepository.cs" />
     <Compile Include="DataAccess\NHibernateStoreRepository.cs" />

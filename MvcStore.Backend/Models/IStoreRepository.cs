@@ -31,11 +31,14 @@ namespace MvcStore.Backend.Models
 	public interface IStoreRepository
 	{
 		IList<Category> Categories { get; }
+		Category Getcategory (int id);
+		void UpdateCategory (Category category);
 		void AddCategory (Category category);
 		bool RemoveCategory (Category category);
 
 		IList<Product> Products { get; }
 		Product GetProduct (int id);
+		void UpdateProduct (Product product);
 		void AddProduct (Product product);
 		bool RemoveProduct (Product product);
 	}

@@ -72,6 +72,13 @@ namespace MvcStore.Backend.Models
 				return false;
 			return repo.RemoveProduct (product);
 		}
+		
+		public void UpdateProduct (Product product)
+		{
+			if (product == null)
+				throw new ArgumentNullException ("category");
+			repo.UpdateProduct (product);
+		}
 
 		public Product GetProduct (int id)
 		{
@@ -91,6 +98,20 @@ namespace MvcStore.Backend.Models
 				return false;
 
 			return repo.RemoveCategory (category);
+		}
+		
+		public void UpdateCategory (Category category)
+		{
+			if (category == null)
+				throw new ArgumentNullException ("category");
+			if (category == misc)
+				return;
+			repo.UpdateCategory (category);
+		}
+		
+		public Category GetCategory (int id)
+		{
+			return repo.Getcategory (id);
 		}
 
 		public ShoppingCart GetCart (HttpContextBase context)

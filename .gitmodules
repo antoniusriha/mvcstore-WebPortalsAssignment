@@ -1,0 +1,3 @@
+[submodule "AspSQLProvider"]
+	path = AspSQLProvider
+	url = git://github.com/dnauck/AspSQLProvider.git

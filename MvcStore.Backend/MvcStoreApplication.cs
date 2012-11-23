@@ -1,5 +1,5 @@
 //
-// Application.cs
+// MvcStoreApplication.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -23,10 +23,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
-using System.IO;
 using System.Web;
-using Mono.Data.Sqlite;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Context;
@@ -45,21 +42,23 @@ namespace MvcStore.Backend
 		
 		public static Store GetStore ()
 		{
-			return new Store (new NHibernateStoreRepository (), new NHibernateShoppingCartRepository ());
+			return new Store (new NHibernateStoreRepository (),
+			                  new NHibernateShoppingCartRepository ());
 		}
 		
-		public static void InitDbs (string connectionString)
+		public static void InitDb (string connectionString, bool exportSchema = false)
 		{
 			MvcStoreApplication.connectionString = connectionString;
+			MvcStoreApplication.exportSchema = exportSchema;
 			
 			// Setup database: Create NHibernate session factory
 			SessionFactory = CreateSessionFactory ();
 			
+			if (!exportSchema)
+				return;
+			
 			// Init db with dummy data
 			LoadDummyData (SessionFactory);
-			
-			// Setup ASP.NET membership schema and admin role
-			MvcStoreMembershipProvider.Setup (usersDbFile);
 		}
 		
 		public static void OpenSession (HttpContext context)
@@ -139,23 +138,23 @@ namespace MvcStore.Backend
 			// supply a configuration instance of your definition to control the automapper.
 			return AutoMap.AssemblyOf<BaseModel> (new StoreAutomappingConfiguration ())
 				.IgnoreBase<BaseModel> ()
-					.Conventions.Add<CascadeConvention> ()
-					.Override<CartItem> (map => map.References (x => x.Product).Cascade.None ());
+				.Conventions.Add<CascadeConvention> ()
+				.Override<CartItem> (map => map.References (x => x.Product).Cascade.None ());
 		}
 		
 		static void BuildSchema (Configuration config)
 		{
-			// create schema store
-			
 			// This is for session management via HttpContext (ASP.NET sessions)
 			config.SetProperty ("current_session_context_class", "managed_web");
 			
 			// this NHibernate tool takes a configuration (with mapping info in)
 			// and exports a database schema from it
-			new SchemaExport (config).Create (false, true);
+			if (exportSchema)
+				new SchemaExport (config).Create (false, true);
 		}
 		
 		static string connectionString;
+		static bool exportSchema;
 	}
 }
 

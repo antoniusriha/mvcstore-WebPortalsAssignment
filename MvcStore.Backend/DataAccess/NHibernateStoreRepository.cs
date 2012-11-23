@@ -57,6 +57,30 @@ namespace MvcStore.Backend.DataAccess
 				}
 			}
 		}
+		
+		public void UpdateCategory (Category category)
+		{
+			if (category == null)
+				throw new ArgumentNullException ("category");
+			var sd = sessionHelper.GetSessionData ();
+			try {
+				sd.Session.SaveOrUpdate (category);
+			} finally {
+				sessionHelper.CommitIfNecessary (sd);
+			}
+		}
+		
+		public Category Getcategory (int id)
+		{
+			Category category = null;
+			var sd = sessionHelper.GetSessionData ();
+			try {
+				category = sd.Session.Get<Category> (id);
+			} finally {
+				sessionHelper.CommitIfNecessary (sd);
+			}
+			return category;
+		}
 
 		public void AddCategory (Category category)
 		{
@@ -87,6 +111,18 @@ namespace MvcStore.Backend.DataAccess
 			return true;
 		}
 
+		public void UpdateProduct (Product product)
+		{
+			if (product == null)
+				throw new ArgumentNullException ("product");
+			var sd = sessionHelper.GetSessionData ();
+			try {
+				sd.Session.SaveOrUpdate (product);
+			} finally {
+				sessionHelper.CommitIfNecessary (sd);
+			}
+		}
+		
 		public void AddProduct (Product product)
 		{
 			if (product == null)

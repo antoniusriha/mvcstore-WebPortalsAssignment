@@ -48,7 +48,6 @@
     <Compile Include="Controller\StoreFixture.cs" />
     <Compile Include="Model\When_a_category_is_added_to_a_new_store.cs" />
     <Compile Include="Model\When_a_category_is_removed_from_a_store.cs" />
-    <Compile Include="Database\When_the_database_is_created_and_dummy_data_is_loaded_into_the_db.cs" />
     <Compile Include="Model\When_the_store_is_initialized.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -66,5 +65,8 @@
       <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
       <Name>MvcStore.Backend</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Database\When_the_database_is_created_and_dummy_data_is_loaded_into_the_db.cs" />
   </ItemGroup>
 </Project>
