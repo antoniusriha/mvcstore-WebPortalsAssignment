@@ -38,7 +38,8 @@
     <h3>Category Details</h3>
     <p>
         <asp:DetailsView ID="CategoryDetailsView" runat="server" AutoGenerateRows="False"
-			DataKeyNames="Id" DataSourceID="CategoryDetailsDataSource" EnableViewState="False">
+			DataKeyNames="Id" DataSourceID="CategoryDetailsDataSource" EnableViewState="False"
+			AllowPaging="True">
             <Fields>
                 <asp:BoundField DataField="Id" HeaderText="Id"
 					SortExpression="Id" ReadOnly="True" InsertVisible="False" />
