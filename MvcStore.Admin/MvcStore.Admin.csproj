@@ -262,6 +262,7 @@
     <Compile Include="EditInsertDelete\UserLevelAccess.aspx.cs">
       <DependentUpon>UserLevelAccess.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OrdersProxy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

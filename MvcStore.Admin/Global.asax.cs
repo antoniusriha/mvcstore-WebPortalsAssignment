@@ -35,9 +35,10 @@ using MvcStore.Backend.Models;
 
 namespace MvcStore.Admin
 {
-	public class Global : System.Web.HttpApplication
+	public class Global : HttpApplication
 	{
 		internal static Store Store { get; private set; }
+		internal static IOrderRepository OrderRepository { get; private set; }
 		
 		protected virtual void Application_Start (Object sender, EventArgs e)
 		{
@@ -46,6 +47,9 @@ namespace MvcStore.Admin
 			
 			// Setup store
 			Store = MvcStoreApplication.GetStore ();
+			
+			// Order repo
+			OrderRepository = MvcStoreApplication.GetOrderRepository ();
 		}
 		
 		protected virtual void Session_Start (Object sender, EventArgs e)
