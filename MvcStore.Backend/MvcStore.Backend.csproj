@@ -69,6 +69,8 @@
     <Compile Include="MvcStoreApplication.cs" />
     <Compile Include="DataAccess\NHibernateShoppingCartRepository.cs" />
     <Compile Include="DataAccess\NHibernateStoreRepository.cs" />
+    <Compile Include="Models\IOrderRepository.cs" />
+    <Compile Include="DataAccess\NHibernateOrderRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -46,6 +46,11 @@ namespace MvcStore.Backend
 			                  new NHibernateShoppingCartRepository ());
 		}
 		
+		public static IOrderRepository GetOrderRepository ()
+		{
+			return new NHibernateOrderRepository ();
+		}
+		
 		public static void InitDb (string connectionString, bool exportSchema = false)
 		{
 			MvcStoreApplication.connectionString = connectionString;
