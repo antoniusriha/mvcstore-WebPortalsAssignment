@@ -32,13 +32,16 @@ namespace MvcStore.Admin
 	{
 		public IEnumerable GetCategories ()
 		{
-			var cats = Global.Store.Categories;
-			return cats;
+			return Global.Store.Categories;
 		}
 		
-		public Category GetCategoryById (int id)
+		public IEnumerable GetCategoryById (int id)
 		{
-			return Global.Store.GetCategory (id);
+			var cat = Global.Store.GetCategory (id);
+			if (cat == null)
+				return new object [] {};
+			else
+				return new object [] { cat };
 		}
 		
 		public void InsertCategory (string name, string description)

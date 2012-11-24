@@ -16,7 +16,7 @@
 		</UpdateParameters>
 	</asp:ObjectDataSource>
     <asp:ObjectDataSource ID="CategoryDetailsDataSource" runat="server"
-        SelectMethod="GetCategories"
+        SelectMethod="GetCategoryById"
 		InsertMethod="InsertCategory"
 		DeleteMethod="DeleteCategory" 
 		UpdateMethod="UpdateCategory"
@@ -33,6 +33,10 @@
 			<asp:Parameter Name="name" Type="String" />
 			<asp:Parameter Name="description" Type="String" />
 		</UpdateParameters>
+		<SelectParameters>
+			<asp:ControlParameter ControlID="CategoriesGridView" Name="id"
+					PropertyName="SelectedValue" Type="Int32" />
+		</SelectParameters>
 	</asp:ObjectDataSource>
     <br />
     <h3>Category Details</h3>

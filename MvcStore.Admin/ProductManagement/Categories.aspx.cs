@@ -34,4 +34,3 @@ namespace MvcStore.Admin.ProductManagement
 	{
 	}
 }
-
