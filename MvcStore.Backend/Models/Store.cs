@@ -54,6 +54,10 @@ namespace MvcStore.Backend.Models
 		public IList<Category> Categories {
 			get { return repo.Categories; }
 		}
+		
+		public IList<Product> Products {
+			get { return repo.Products; }
+		}
 
 		public void AddProduct (Product product)
 		{

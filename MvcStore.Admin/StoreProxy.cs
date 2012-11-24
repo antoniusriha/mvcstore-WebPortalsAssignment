@@ -68,5 +68,58 @@ namespace MvcStore.Admin
 			cat.Description = description;
 			Global.Store.UpdateCategory (cat);
 		}
+		
+		public IEnumerable GetProducts ()
+		{
+			return Global.Store.Products;
+		}
+		
+		public IEnumerable GetProductsByCategoryId (int id)
+		{
+			if (id < 0)
+				return Global.Store.Products;
+			
+			var category = Global.Store.GetCategory (id);
+			if (category == null)
+				return new object [] {};
+			return category.Products;
+		}
+			
+		public IEnumerable GetProductById (int id)
+		{
+			var product = Global.Store.GetProduct (id);
+			if (product == null)
+				return new object [] {};
+			else
+				return new object [] { product };
+		}
+			
+		public void InsertProduct (string name, string description, decimal price)
+		{
+			var product = new Product (name) {
+				Description = description,
+				Price = price
+			};
+			Global.Store.AddProduct (product);
+		}
+			
+		public void DeleteProduct (int id)
+		{
+			var product = Global.Store.GetProduct (id);
+			if (product != null)
+				Global.Store.RemoveProduct (product);
+		}
+			
+		public void UpdateProduct (int id, string name, string description, decimal price)
+		{
+			var product = Global.Store.GetProduct (id);
+			if (product == null)
+				return;
+				
+			product.SetName (name);
+			product.Description = description;
+			product.Price = price;
+			Global.Store.UpdateProduct (product);
+		}
 	}
 }
