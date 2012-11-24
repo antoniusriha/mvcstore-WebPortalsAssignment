@@ -139,7 +139,8 @@ namespace MvcStore.Backend
 			return AutoMap.AssemblyOf<BaseModel> (new StoreAutomappingConfiguration ())
 				.IgnoreBase<BaseModel> ()
 				.Conventions.Add<CascadeConvention> ()
-				.Override<CartItem> (map => map.References (x => x.Product).Cascade.None ());
+				.Override<CartItem> (map => map.References (x => x.Product).Cascade.None ())
+				.Override<Category> (map => map.HasMany (x => x.Products).Cascade.SaveUpdate ());
 		}
 		
 		static void BuildSchema (Configuration config)

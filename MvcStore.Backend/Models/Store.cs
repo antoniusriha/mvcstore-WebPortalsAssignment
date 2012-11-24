@@ -44,7 +44,7 @@ namespace MvcStore.Backend.Models
 			this.cartRepo = cartRepo;
 
 			// Setup category Misc, if not already there
-			misc = Categories.SingleOrDefault (c => c.Name == "Misc");
+			var misc = Categories.SingleOrDefault (c => c.Name == "Misc");
 			if (misc == null) {
 				misc = new Category ("Misc");
 				AddCategory (misc);
@@ -60,6 +60,7 @@ namespace MvcStore.Backend.Models
 			if (product == null)
 				throw new ArgumentNullException ("product");
 
+			var misc = repo.Categories.Single (c => c.Name == "Misc");
 			if (product.Category == null)
 				product.SetCategory (misc);
 
@@ -94,9 +95,15 @@ namespace MvcStore.Backend.Models
 
 		public bool RemoveCategory (Category category)
 		{
-			if (category == null || category == misc)
+			var misc = repo.Categories.Single (c => c.Name == "Misc");
+			if (category == null || category.Id == misc.Id)
 				return false;
 
+			// transfer all products of the category being deleted to misc
+			foreach (var item in category.Products)
+				item.SetCategory (misc);
+			repo.UpdateCategory (misc);
+			
 			return repo.RemoveCategory (category);
 		}
 		
@@ -104,6 +111,8 @@ namespace MvcStore.Backend.Models
 		{
 			if (category == null)
 				throw new ArgumentNullException ("category");
+			
+			var misc = repo.Categories.Single (c => c.Name == "Misc");
 			if (category == misc)
 				return;
 			repo.UpdateCategory (category);
@@ -126,6 +135,5 @@ namespace MvcStore.Backend.Models
 
 		IStoreRepository repo;
 		IShoppingCartRepository cartRepo;
-		Category misc;
 	}
 }
