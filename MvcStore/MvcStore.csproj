@@ -138,5 +138,17 @@
       <Project>{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}</Project>
       <Name>PostgreSQLProvider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ninject\src\Ninject\Ninject.csproj">
+      <Project>{ADF369E2-6B9E-4D56-9B82-D273AE41EC2D}</Project>
+      <Name>Ninject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ninject.web.mvc\mvc2\src\Ninject.Web.Mvc\Ninject.Web.Mvc.csproj">
+      <Project>{82222179-0EB8-4C43-AD48-6EA388349C64}</Project>
+      <Name>Ninject.Web.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ninject.Web.Common\src\Ninject.Web.Common\Ninject.Web.Common.csproj">
+      <Project>{1FD016A0-A938-4F81-88BE-0DED65D9A022}</Project>
+      <Name>Ninject.Web.Common</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

@@ -1,3 +1,12 @@
 [submodule "AspSQLProvider"]
 	path = AspSQLProvider
 	url = git://github.com/dnauck/AspSQLProvider.git
+[submodule "ninject"]
+	path = ninject
+	url = git://github.com/ninject/ninject.git
+[submodule "ninject.web.mvc"]
+	path = ninject.web.mvc
+	url = git://github.com/ninject/ninject.web.mvc.git
+[submodule "Ninject.Web.Common"]
+	path = Ninject.Web.Common
+	url = git://github.com/ninject/Ninject.Web.Common.git
