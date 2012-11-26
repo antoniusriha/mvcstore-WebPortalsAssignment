@@ -4,6 +4,7 @@ obj/
 test-results/
 *.userprefs
 *.suo
+*.designer.cs
 /MvcStore/store.db
 /MvcStore/App_Data/store.db
 /MvcStore/App_Data/users.db
