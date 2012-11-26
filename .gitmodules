@@ -3,10 +3,10 @@
 	url = git://github.com/dnauck/AspSQLProvider.git
 [submodule "ninject"]
 	path = ninject
-	url = git://github.com/ninject/ninject.git
+	url = linode:Projects/ninject
 [submodule "ninject.web.mvc"]
 	path = ninject.web.mvc
-	url = git://github.com/ninject/ninject.web.mvc.git
+	url = linode:Projects/ninject.web.mvc
 [submodule "Ninject.Web.Common"]
 	path = Ninject.Web.Common
-	url = git://github.com/ninject/Ninject.Web.Common.git
+	url = linode:Projects/ninject.web.common
