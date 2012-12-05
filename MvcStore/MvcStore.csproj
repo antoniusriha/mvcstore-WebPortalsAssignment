@@ -79,6 +79,7 @@
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\RepoExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -130,10 +131,6 @@
     <None Include="README.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MvcStore.Backend\MvcStore.Backend.csproj">
-      <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
-      <Name>MvcStore.Backend</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AspSQLProvider\src\NauckIT.PostgreSQLProvider\PostgreSQLProvider.csproj">
       <Project>{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}</Project>
       <Name>PostgreSQLProvider</Name>
@@ -149,6 +146,10 @@
     <ProjectReference Include="..\Ninject.Web.Common\src\Ninject.Web.Common\Ninject.Web.Common.csproj">
       <Project>{1FD016A0-A938-4F81-88BE-0DED65D9A022}</Project>
       <Name>Ninject.Web.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcStore.Backend\libmvcstore.csproj">
+      <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
+      <Name>libmvcstore</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

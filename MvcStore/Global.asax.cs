@@ -24,26 +24,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.Configuration;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using MvcStore.Backend;
-using MvcStore.Backend.Models;
-using System.Configuration;
+using Ninject;
+using Ninject.Web.Common;
+using MvcStore.Models;
+using MvcStore.DataAccess;
+using System.Reflection;
 
 namespace MvcStore
 {
-	public class MvcApplication : HttpApplication
+	public class MvcApplication : NinjectHttpApplication
 	{
 		internal static Store Store { get; private set; }
 
-		protected void Application_Start ()
+		protected override void OnApplicationStarted ()
 		{
 			var connectionString = ConfigurationManager.ConnectionStrings ["AspSQLProvider"];
 			MvcStoreApplication.InitDb (connectionString.ConnectionString);
-			
-			// Setup store
-			Store = MvcStoreApplication.GetStore ();
 			
 			AreaRegistration.RegisterAllAreas ();
 			RegisterRoutes (RouteTable.Routes);
@@ -68,6 +68,14 @@ namespace MvcStore
 				"{controller}/{action}/{id}",
 				new { controller = "Store", action = "Index", id = "" }
 			);
+		}
+
+		protected override IKernel CreateKernel ()
+		{
+			var kernel = new StandardKernel ();
+			kernel.Bind (typeof (IRepository<>)).To (typeof (NHibernateRepository<>));
+			kernel.Load (Assembly.GetExecutingAssembly ());
+			return kernel;
 		}
 	}
 }

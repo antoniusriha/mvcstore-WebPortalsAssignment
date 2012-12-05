@@ -3,36 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MvcStore.Backend.Models;
+using MvcStore.Models;
 
 namespace MvcStore.Controllers
 {
     public class StoreController : Controller
     {
+		readonly IRepository<Category> categoryRepo;
+		readonly IRepository<Product> productRepo;
+		
+		public StoreController (IRepository<Category> categoryRepo,
+		                        IRepository<Product> productRepo)
+		{
+			if (productRepo == null)
+				throw new ArgumentNullException ("productRepo");
+			if (categoryRepo == null)
+				throw new ArgumentNullException ("categoryRepo");
+			this.productRepo = productRepo;
+			this.categoryRepo = categoryRepo;
+		}
+
         public ActionResult Index ()
         {
-            return View (store.Categories);
+            return View (categoryRepo.GetItems ());
         }
 		
 		public ActionResult Browse (string category)
 		{
-			return View (store.Categories.Single (c => c.Name == category));
+			return View (categoryRepo.GetItems ().Single (c => c.Name == category));
 		}
 		
 		public ActionResult Details (int id)
 		{
-			return View (store.GetProduct (id));
+			return View (productRepo.GetItemById (id));
 		}
 		
 		//
 		// GET: /Store/GenreMenu
 		[ChildActionOnly]
-		public ActionResult CategoryMenu()
+		public ActionResult CategoryMenu ()
 		{
-			var cats = store.Categories;
-			return PartialView(cats);
+			return PartialView (categoryRepo.GetItems ());
 		}
-
-		Store store = MvcApplication.Store;
     }
 }

@@ -5,12 +5,24 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using MvcStore.Backend.Models;
+using MvcStore.Models;
 
 namespace MvcStore.Controllers
 {
     public class AccountController : Controller
     {
+		readonly IRepository<Cart> cartRepo;
+		readonly IRepository<CartItem> cartItemRepo;
+		
+		public AccountController (IRepository<Cart> cartRepo, IRepository<CartItem> cartItemRepo)
+		{
+			if (cartItemRepo == null)
+				throw new ArgumentNullException ("cartItemRepo");
+			this.cartItemRepo = cartItemRepo;
+			if (cartRepo == null)
+				throw new ArgumentNullException ("cartRepo");
+			this.cartRepo = cartRepo;
+		}
 
         //
         // GET: /Account/LogOn
@@ -217,15 +229,32 @@ namespace MvcStore.Controllers
 			}
 		}
 		
-		private void MigrateShoppingCart(string userName)
+		void MigrateShoppingCart (string userName)
 		{
 			// Associate shopping cart items with logged-in user
-			var cart = store.GetCart(HttpContext);
+			var cart = cartRepo.GetCart (HttpContext);
 			
-			cart.MigrateCart(userName);
-			Session[ShoppingCart.CartSessionKey] = userName;
+			// check if user already has a cart
+			var userCart = cartRepo.GetItems ().SingleOrDefault (c => c.Owner == userName);
+			// if user already has a cart
+			if (userCart != null) {
+				// migrate items
+				var oldCart = cart;
+				cart = userCart;
+				foreach (var item in oldCart.Items) {
+					for (int i = 0; i < item.Count; i++)
+						cartRepo.AddToCart (cart, item.Product, cartItemRepo);
+				}
+				
+				// delete anonymous cart
+				cartRepo.DeleteItem (oldCart);
+			} else {
+				// just rename the cart
+				cart.Owner = userName;
+				cartRepo.UpdateItem (cart);
+			}
+			
+			Session [RepoExtensions.CartSessionKey] = userName;
 		}
-		
-		Store store = MvcApplication.Store;
     }
 }
