@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<MvcStore.Backend.Models.Category>>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<MvcStore.Models.Category>>" %>
 
 <ul id="categories">
     <% foreach (var cat in Model) { %>

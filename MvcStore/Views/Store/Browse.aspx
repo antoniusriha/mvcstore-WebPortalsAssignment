@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_LayoutDetail.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Backend.Models.Category>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_LayoutDetail.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Models.Category>" %>
 <asp:Content ID="headContent" ContentPlaceHolderID="head" runat="server">
 	<title>Browse</title>
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_Layout.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Backend.Models.ChangePasswordModel>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_Layout.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Models.ChangePasswordModel>" %>
 <asp:Content ID="headContent" ContentPlaceHolderID="headGeneral" runat="server">
 	<title>Change Password</title>
 </asp:Content>
