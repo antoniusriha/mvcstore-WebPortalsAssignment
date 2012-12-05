@@ -26,7 +26,7 @@
 using System;
 using System.Configuration;
 using System.Diagnostics;
-using MvcStore.Backend;
+using MvcStore;
 
 class Program
 {

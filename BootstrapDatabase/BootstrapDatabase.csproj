@@ -50,9 +50,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MvcStore.Backend\MvcStore.Backend.csproj">
+    <ProjectReference Include="..\MvcStore.Backend\libmvcstore.csproj">
       <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
-      <Name>MvcStore.Backend</Name>
+      <Name>libmvcstore</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
