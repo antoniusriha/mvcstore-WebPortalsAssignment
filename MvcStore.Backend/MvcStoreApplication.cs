@@ -31,51 +31,41 @@ using NHibernate.Tool.hbm2ddl;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using MvcStore.Backend.DataAccess;
-using MvcStore.Backend.Models;
+using MvcStore.Models;
+using MvcStore.DataAccess;
 
-namespace MvcStore.Backend
+namespace MvcStore
 {
 	public class MvcStoreApplication
 	{
-		internal static ISessionFactory SessionFactory { get; private set; }
-		
-		public static Store GetStore ()
-		{
-			return new Store (new NHibernateStoreRepository (),
-			                  new NHibernateShoppingCartRepository ());
-		}
-		
-		public static IOrderRepository GetOrderRepository ()
-		{
-			return new NHibernateOrderRepository ();
-		}
-		
+		internal static SessionHelper SessionHelper { get; private set; }
+
 		public static void InitDb (string connectionString, bool exportSchema = false)
 		{
 			MvcStoreApplication.connectionString = connectionString;
 			MvcStoreApplication.exportSchema = exportSchema;
 			
 			// Setup database: Create NHibernate session factory
-			SessionFactory = CreateSessionFactory ();
+			sessionFactory = CreateSessionFactory ();
+			SessionHelper = new SessionHelper (sessionFactory);
 			
 			if (!exportSchema)
 				return;
 			
 			// Init db with dummy data
-			LoadDummyData (SessionFactory);
+			LoadDummyData (sessionFactory);
 		}
 		
 		public static void OpenSession (HttpContext context)
 		{
-			var session = SessionFactory.OpenSession ();
+			var session = sessionFactory.OpenSession ();
 			session.BeginTransaction ();
 			ManagedWebSessionContext.Bind (context, session);
 		}
 		
 		public static void CloseSession (HttpContext context)
 		{
-			var session = ManagedWebSessionContext.Unbind (context, SessionFactory);
+			var session = ManagedWebSessionContext.Unbind (context, sessionFactory);
 			if (session != null) {
 				try {
 					session.Transaction.Commit ();
@@ -98,19 +88,19 @@ namespace MvcStore.Backend
 			using (var session = sessionFactory.OpenSession ()) {
 				// populate the database
 				using (var transaction = session.BeginTransaction ()) {
-					var food = new Category ("Food");
+					var food = new Category { Name = "Food" };
 					
-					var prod = new Product ("Potatoes") { Price = 3.60m };
+					var prod = new Product () { Name = "Potatoes", Price = 3.60m };
 					prod.SetCategory (food);
-					prod = new Product ("Fish") { Price = 4.49m };
+					prod = new Product () { Name = "Fish", Price = 4.49m };
 					prod.SetCategory (food);
-					prod = new Product ("Milk") { Price = 0.79m };
+					prod = new Product () { Name = "Milk", Price = 0.79m };
 					prod.SetCategory (food);
-					prod = new Product ("Bread") { Price = 1.29m };
+					prod = new Product () { Name = "Bread", Price = 1.29m };
 					prod.SetCategory (food);
-					prod = new Product ("Cheese") { Price = 2.10m };
+					prod = new Product () { Name = "Cheese", Price = 2.10m };
 					prod.SetCategory (food);
-					prod = new Product ("Waffles") { Price = 2.41m };
+					prod = new Product () { Name = "Waffles", Price = 2.41m };
 					prod.SetCategory (food);
 					
 					// save category, this saves everything else via cascading
@@ -141,8 +131,8 @@ namespace MvcStore.Backend
 			// all the classes in the assembly that contains BaseModel), and then either
 			// use the Setup and Where methods to restrict that behaviour, or (preferably)
 			// supply a configuration instance of your definition to control the automapper.
-			return AutoMap.AssemblyOf<BaseModel> (new StoreAutomappingConfiguration ())
-				.IgnoreBase<BaseModel> ()
+			return AutoMap.AssemblyOf<ModelBase> (new StoreAutomappingConfiguration ())
+				.IgnoreBase<ModelBase> ()
 				.Conventions.Add<CascadeConvention> ()
 				.Override<CartItem> (map => map.References (x => x.Product).Cascade.None ())
 				.Override<Category> (map => map.HasMany (x => x.Products).Cascade.SaveUpdate ());
@@ -158,7 +148,8 @@ namespace MvcStore.Backend
 			if (exportSchema)
 				new SchemaExport (config).Create (false, true);
 		}
-		
+
+		static ISessionFactory sessionFactory;
 		static string connectionString;
 		static bool exportSchema;
 	}

@@ -49,28 +49,23 @@
     <Reference Include="Npgsql" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Store.cs" />
-    <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\IStoreRepository.cs" />
-    <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\OrderDetail.cs" />
-    <Compile Include="Models\ShoppingCart.cs" />
-    <Compile Include="Models\IShoppingCartRepository.cs" />
-    <Compile Include="Models\CartItem.cs" />
-    <Compile Include="Models\Cart.cs" />
     <Compile Include="CascadeConvention.cs" />
     <Compile Include="SessionData.cs" />
     <Compile Include="StoreAutomappingConfiguration.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\IRepository.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ModelBase.cs" />
     <Compile Include="MvcStoreApplication.cs" />
-    <Compile Include="DataAccess\NHibernateShoppingCartRepository.cs" />
-    <Compile Include="DataAccess\NHibernateStoreRepository.cs" />
-    <Compile Include="Models\IOrderRepository.cs" />
-    <Compile Include="DataAccess\NHibernateOrderRepository.cs" />
+    <Compile Include="NHibernateRepository.cs" />
+    <Compile Include="Models\Store.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

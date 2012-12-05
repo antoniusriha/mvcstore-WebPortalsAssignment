@@ -23,28 +23,19 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
 using System.Collections.Generic;
 
-namespace MvcStore.Backend.Models
+namespace MvcStore.Models
 {
-	public class Category : BaseModel
+	public class Category : ModelBase
 	{
-		public Category (string name) : base (name) {}
-
-		protected Category () {}
-
-		/// <summary>
-		/// Gets the products. CAUTION. Don't use this property to add products to
-		/// the category! Use the Product.SetCategory (Category) method instead.
-		/// </summary>
-		/// <value>
-		/// The products.
-		/// </value>
-		public virtual IList<Product> Products {
-			get { return products ?? (products = new List<Product> ()); }
+		public Category ()
+		{
+			Products = new List<Product> ();
 		}
-		
-		List<Product> products;
+
+		public virtual string Name { get; set; }
+
+		public virtual IList<Product> Products { get; set; }
 	}
 }

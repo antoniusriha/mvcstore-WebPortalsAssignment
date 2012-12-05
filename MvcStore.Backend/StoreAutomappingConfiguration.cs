@@ -1,8 +1,8 @@
 using System;
 using FluentNHibernate.Automapping;
-using MvcStore.Backend.Models;
+using MvcStore.Models;
 
-namespace MvcStore
+namespace MvcStore.DataAccess
 {
     /// <summary>
     /// This is an example automapping configuration. You should create your own that either
@@ -15,13 +15,14 @@ namespace MvcStore
         {
             // specify the criteria that types must meet in order to be mapped
             // any type for which this method returns false will not be mapped.
-			return type.Namespace == "MvcStore.Backend.Models" &&
+			return type.Namespace == "MvcStore.Models" &&
 				type == typeof (Cart) ||
 				type == typeof (CartItem) ||
 				type == typeof (Category) ||
 				type == typeof (Order) ||
 				type == typeof (OrderDetail) ||
-				type == typeof (Product)
+				type == typeof (Product) ||
+				type == typeof (Store)
 				;
         }
 

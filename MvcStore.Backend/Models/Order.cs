@@ -25,19 +25,17 @@
 // THE SOFTWARE.
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
-namespace MvcStore.Backend.Models
+namespace MvcStore.Models
 {
-	public class Order : BaseModel
+	public class Order : ModelBase
 	{
-		public Order (string name) : base (name)
+		public Order ()
 		{
-			OrderDate = DateTime.Now;
+			OrderDetails = new List<OrderDetail> ();
 		}
-
-		protected Order () {}
 
 		[ScaffoldColumn(false)]
 		public virtual string Username { get; set; }
@@ -88,19 +86,8 @@ namespace MvcStore.Backend.Models
 		public virtual decimal Total { get; set; }
 
 		[ScaffoldColumn(false)]
-		public virtual DateTime OrderDate { get; protected set; }
+		public virtual DateTime OrderDate { get; set; }
 
-		/// <summary>
-		/// Gets the order details. CAUTION. Don't use this property to add order details to
-		/// the order! Use the OderDetail.SetOrder (Order) method instead.
-		/// </summary>
-		/// <value>
-		/// The order details.
-		/// </value>
-		public virtual IList<OrderDetail> OrderDetails {
-			get { return orderDetails ?? (orderDetails = new List<OrderDetail> ()); }
-		}
-
-		List<OrderDetail> orderDetails;
+		public virtual IList<OrderDetail> OrderDetails { get; set; }
 	}
 }

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStore.Test", "MvcStore.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStore.Admin", "MvcStore.Admin\MvcStore.Admin.csproj", "{0F15C81D-A225-4808-8627-1E0F3FDC364C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStore.Backend", "MvcStore.Backend\MvcStore.Backend.csproj", "{DE118DF6-AD28-4395-95F2-4708D7FE8521}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libmvcstore", "MvcStore.Backend\libmvcstore.csproj", "{DE118DF6-AD28-4395-95F2-4708D7FE8521}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostgreSQLProvider", "AspSQLProvider\src\NauckIT.PostgreSQLProvider\PostgreSQLProvider.csproj", "{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}"
 EndProject

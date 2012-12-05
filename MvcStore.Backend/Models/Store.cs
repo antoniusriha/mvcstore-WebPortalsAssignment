@@ -23,121 +23,19 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
-namespace MvcStore.Backend.Models
+namespace MvcStore.Models
 {
-	public class Store
+	public class Store : ModelBase
 	{
-		public Store (IStoreRepository repo, IShoppingCartRepository cartRepo)
+		public Store ()
 		{
-			if (cartRepo == null)
-				throw new ArgumentNullException ("cartRepo");
-			if (repo == null)
-				throw new ArgumentNullException ("repo");
-			
-			this.repo = repo;
-			this.cartRepo = cartRepo;
-
-			// Setup category Misc, if not already there
-			var misc = Categories.SingleOrDefault (c => c.Name == "Misc");
-			if (misc == null) {
-				misc = new Category ("Misc");
-				AddCategory (misc);
-			}
-		}
-
-		public IList<Category> Categories {
-			get { return repo.Categories; }
+			Categories = new List<Category> ();
 		}
 		
-		public IList<Product> Products {
-			get { return repo.Products; }
-		}
-
-		public void AddProduct (Product product)
-		{
-			if (product == null)
-				throw new ArgumentNullException ("product");
-
-			var misc = repo.Categories.Single (c => c.Name == "Misc");
-			if (product.Category == null)
-				product.SetCategory (misc);
-
-			repo.AddProduct (product);
-		}
-
-		public bool RemoveProduct (Product product)
-		{
-			if (product == null)
-				return false;
-			return repo.RemoveProduct (product);
-		}
+		public virtual IList<Category> Categories { get; set; }
 		
-		public void UpdateProduct (Product product)
-		{
-			if (product == null)
-				throw new ArgumentNullException ("category");
-			repo.UpdateProduct (product);
-		}
-
-		public Product GetProduct (int id)
-		{
-			return repo.GetProduct (id);
-		}
-
-		public void AddCategory (Category category)
-		{
-			if (category == null)
-				throw new ArgumentNullException ("category");
-			repo.AddCategory (category);
-		}
-
-		public bool RemoveCategory (Category category)
-		{
-			var misc = repo.Categories.Single (c => c.Name == "Misc");
-			if (category == null || category.Id == misc.Id)
-				return false;
-
-			// transfer all products of the category being deleted to misc
-			foreach (var item in category.Products)
-				item.SetCategory (misc);
-			repo.UpdateCategory (misc);
-			
-			return repo.RemoveCategory (category);
-		}
-		
-		public void UpdateCategory (Category category)
-		{
-			if (category == null)
-				throw new ArgumentNullException ("category");
-			
-			var misc = repo.Categories.Single (c => c.Name == "Misc");
-			if (category == misc)
-				return;
-			repo.UpdateCategory (category);
-		}
-		
-		public Category GetCategory (int id)
-		{
-			return repo.Getcategory (id);
-		}
-
-		public ShoppingCart GetCart (HttpContextBase context)
-		{
-			return new ShoppingCart (context, cartRepo);
-		}
-
-		public ShoppingCart GetCart (Controller controller)
-		{
-			return new ShoppingCart (controller.HttpContext, cartRepo);
-		}
-
-		IStoreRepository repo;
-		IShoppingCartRepository cartRepo;
+		public virtual Category DefaultCategory { get; set; }
 	}
 }

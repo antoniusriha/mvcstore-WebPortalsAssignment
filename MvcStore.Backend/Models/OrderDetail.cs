@@ -25,27 +25,17 @@
 // THE SOFTWARE.
 using System;
 
-namespace MvcStore.Backend.Models
+namespace MvcStore.Models
 {
-	public class OrderDetail : BaseModel
+	public class OrderDetail : ModelBase
 	{
-		public OrderDetail (Product product) : base ("OrderDetail")
-		{
-			if (product == null)
-				throw new ArgumentNullException ("product");
-			Product = product;
-			UnitPrice = product.Price;
-		}
-
-		protected OrderDetail () {}
-
 		public virtual int Quantity { get; set; }
 
 		public virtual decimal UnitPrice { get; set; }
 
-		public virtual Product Product { get; protected set; }
+		public virtual Product Product { get; set; }
 
-		public virtual Order Order { get; protected set; }
+		public virtual Order Order { get; set; }
 
 		public virtual void SetOrder (Order order)
 		{

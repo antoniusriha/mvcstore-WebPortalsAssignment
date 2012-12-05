@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
 
-namespace MvcStore
+namespace MvcStore.DataAccess
 {
     /// <summary>
     /// This is a convention that will be applied to all entities in your application. What this particular

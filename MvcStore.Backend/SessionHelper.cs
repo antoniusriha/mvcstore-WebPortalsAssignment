@@ -26,7 +26,7 @@
 using System;
 using NHibernate;
 
-namespace MvcStore.Backend
+namespace MvcStore.DataAccess
 {
 	public class SessionHelper
 	{

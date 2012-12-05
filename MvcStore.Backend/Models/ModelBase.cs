@@ -1,5 +1,5 @@
 //
-// IShoppingCartRepository.cs
+// BaseModel.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -23,25 +23,16 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace MvcStore.Backend.Models
+namespace MvcStore.Models
 {
-	public interface IShoppingCartRepository
+	public abstract class ModelBase
 	{
-		IList<Cart> Carts { get; }
-		void AddCart (Cart cart);
-		void RemoveCart (Cart cart);
-		void UpdateCart (Cart cart);
-
-		CartItem GetCartItem (int id);
-		void AddCartItem (CartItem item);
-		void RemoveCartItem (CartItem item);
-		void UpdateCartItem (CartItem item);
-
-		Order GetOrder (int id);
-		void AddOrder (Order order);
-		void RemoveOrder (Order order);
+		[ScaffoldColumn(false)]
+		public virtual int Id { get; set; }
+		
+		[ScaffoldColumn(false)]
+		public virtual string Description { get; set; }
 	}
 }

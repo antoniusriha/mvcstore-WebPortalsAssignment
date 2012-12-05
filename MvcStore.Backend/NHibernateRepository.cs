@@ -1,5 +1,5 @@
 //
-// NHibernateOrderRepository.cs
+// NHibernateRepository.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,68 +24,62 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System.Collections.Generic;
-using MvcStore.Backend.Models;
+using MvcStore.Models;
 
-namespace MvcStore.Backend.DataAccess
+namespace MvcStore.DataAccess
 {
-	public class NHibernateOrderRepository : IOrderRepository
+	public class NHibernateRepository<T> : IRepository<T> where T : ModelBase
 	{
-		public NHibernateOrderRepository ()
-		{
-			sessionHelper = new SessionHelper (MvcStoreApplication.SessionFactory);
-		}
-		
-		public Order GetOrder (int id)
+		public IList<T> GetItems ()
 		{
 			var sd = sessionHelper.GetSessionData ();
 			try {
-				return sd.Session.Get<Order> (id);
+				return sd.Session.CreateCriteria (typeof (T)).List<T> ();
 			} finally {
 				sessionHelper.CommitIfNecessary (sd);
 			}
 		}
 
-		public void AddOrder (Order order)
+		public T GetItemById (int id)
 		{
 			var sd = sessionHelper.GetSessionData ();
 			try {
-				sd.Session.SaveOrUpdate (order);
+				return sd.Session.Get<T> (id);
 			} finally {
 				sessionHelper.CommitIfNecessary (sd);
 			}
 		}
 
-		public void RemoveOrder (Order order)
+		public void AddItem (T item)
 		{
 			var sd = sessionHelper.GetSessionData ();
 			try {
-				sd.Session.Delete (order);
+				sd.Session.SaveOrUpdate (item);
 			} finally {
 				sessionHelper.CommitIfNecessary (sd);
 			}
 		}
 
-		public void UpdateOrder (Order order)
+		public void DeleteItem (T item)
 		{
 			var sd = sessionHelper.GetSessionData ();
 			try {
-				sd.Session.SaveOrUpdate (order);
+				sd.Session.Delete (item);
 			} finally {
 				sessionHelper.CommitIfNecessary (sd);
 			}
 		}
 
-		public IList<Order> Orders {
-			get {
-				var sd = sessionHelper.GetSessionData ();
-				try {
-					return sd.Session.CreateCriteria (typeof (Order));
-				} finally {
-					sessionHelper.CommitIfNecessary (sd);
-				}
+		public void UpdateItem (T item)
+		{
+			var sd = sessionHelper.GetSessionData ();
+			try {
+				sd.Session.SaveOrUpdate (item);
+			} finally {
+				sessionHelper.CommitIfNecessary (sd);
 			}
 		}
-		
-		SessionHelper sessionHelper;
+
+		SessionHelper sessionHelper = MvcStoreApplication.SessionHelper;
 	}
 }

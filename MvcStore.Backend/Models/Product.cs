@@ -25,18 +25,16 @@
 // THE SOFTWARE.
 using System;
 
-namespace MvcStore.Backend.Models
+namespace MvcStore.Models
 {
-	public class Product : BaseModel
+	public class Product : ModelBase
 	{
-		public Product (string name) : base (name) {}
-
-		protected Product () {}
-
-		public virtual Category Category { get; protected set; }
-
+		public virtual string Name { get; set; }
+		
+		public virtual Category Category { get; set; }
+		
 		public virtual decimal Price { get; set; }
-
+		
 		public virtual void SetCategory (Category category)
 		{
 			if (category == null)

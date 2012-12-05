@@ -1,5 +1,5 @@
 //
-// Cart.cs
+// CartItem.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -25,27 +25,17 @@
 // THE SOFTWARE.
 using System;
 
-namespace MvcStore.Backend.Models
+namespace MvcStore.Models
 {
-	public class CartItem : BaseModel
+	public class CartItem : ModelBase
 	{
-		public CartItem (Product product) : base ("CartItem")
-		{
-			if (product == null)
-				throw new ArgumentNullException ("product");
-			Product = product;
-			DateCreated = DateTime.Now;
-		}
-
-		protected CartItem () {}
-
-		public virtual Cart Cart { get; protected set; }
+		public virtual Cart Cart { get; set; }
 
 		public virtual int Count { get; set; }
 
-		public virtual DateTime DateCreated { get; protected set; }
+		public virtual DateTime DateCreated { get; set; }
 
-		public virtual Product Product { get; protected set; }
+		public virtual Product Product { get; set; }
 
 		public virtual void SetCart (Cart cart)
 		{

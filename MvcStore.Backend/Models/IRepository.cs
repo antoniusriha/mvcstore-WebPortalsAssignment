@@ -1,5 +1,5 @@
 //
-// IProductRepository.cs
+// IRepository.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -23,23 +23,16 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
 using System.Collections.Generic;
 
-namespace MvcStore.Backend.Models
+namespace MvcStore.Models
 {
-	public interface IStoreRepository
+	public interface IRepository<T> where T : ModelBase
 	{
-		IList<Category> Categories { get; }
-		Category Getcategory (int id);
-		void UpdateCategory (Category category);
-		void AddCategory (Category category);
-		bool RemoveCategory (Category category);
-
-		IList<Product> Products { get; }
-		Product GetProduct (int id);
-		void UpdateProduct (Product product);
-		void AddProduct (Product product);
-		bool RemoveProduct (Product product);
+		IList<T> GetItems ();
+		T GetItemById (int id);
+		void AddItem (T item);
+		void DeleteItem (T item);
+		void UpdateItem (T item);
 	}
 }

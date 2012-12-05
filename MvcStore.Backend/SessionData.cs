@@ -26,7 +26,7 @@
 using System;
 using NHibernate;
 
-namespace MvcStore
+namespace MvcStore.DataAccess
 {
 	public class SessionData
 	{

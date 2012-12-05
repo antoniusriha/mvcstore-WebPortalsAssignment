@@ -23,28 +23,25 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace MvcStore.Backend.Models
+namespace MvcStore.Models
 {
-	public class Cart : BaseModel
+	public class Cart : ModelBase
 	{
-		public Cart (string name) : base (name) {}
-
-		protected Cart () {}
-
-		/// <summary>
-		/// Gets the cart items. CAUTION. Don't use this property to add items to
-		/// the cart! Use the CartItem.SetCart (Cart) method instead.
-		/// </summary>
-		/// <value>
-		/// The items.
-		/// </value>
-		public virtual IList<CartItem> Items {
-			get { return items ?? (items = new List<CartItem> ()); }
+		public Cart ()
+		{
+			Items = new List<CartItem> ();
 		}
 
-		List<CartItem> items;
+		public virtual string Owner { get; set; }
+
+		public virtual IList<CartItem> Items { get; set; }
+		
+		public virtual decimal GetTotal ()
+		{
+			return Items.Select (c => c.Count * c.Product.Price).Sum ();
+		}
 	}
 }
