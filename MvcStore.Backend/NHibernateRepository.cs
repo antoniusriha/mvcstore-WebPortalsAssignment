@@ -24,6 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System.Collections.Generic;
+using NHibernate;
 using MvcStore.Models;
 
 namespace MvcStore.DataAccess
@@ -64,7 +65,15 @@ namespace MvcStore.DataAccess
 		{
 			var sd = sessionHelper.GetSessionData ();
 			try {
-				sd.Session.Delete (item);
+				// if Delete fails because the object instance somehow
+				// got dissociated (Is that a word?), try merge and
+				// delete merged entity.
+				try {
+					sd.Session.Delete (item);
+				} catch (NonUniqueObjectException) {
+					var mergedEntity = sd.Session.Merge (item);
+					sd.Session.Delete (mergedEntity);
+				}
 			} finally {
 				sessionHelper.CommitIfNecessary (sd);
 			}
@@ -74,7 +83,14 @@ namespace MvcStore.DataAccess
 		{
 			var sd = sessionHelper.GetSessionData ();
 			try {
-				sd.Session.SaveOrUpdate (item);
+				// Use SaveOrUpdate by default; try merge if that fails
+				// because the object instance somehow got dissociated.
+				// (Is that a word?)
+				try {
+					sd.Session.SaveOrUpdate (item);
+				} catch (NonUniqueObjectException) {
+					sd.Session.Merge (item);
+				}
 			} finally {
 				sessionHelper.CommitIfNecessary (sd);
 			}
