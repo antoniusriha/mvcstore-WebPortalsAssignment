@@ -40,7 +40,7 @@ namespace MvcStore.Test
 		{
 			// Arrange
 			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
+			var mockCartRepo = new Mock<ICartRepository> ();
 			cat = new Category ("Cat1");
 			mockRepo.Setup (c => c.RemoveCategory (cat)).Returns (true);
 			mockRepo.SetupGet (c => c.Categories).Returns (new List<Category> ());

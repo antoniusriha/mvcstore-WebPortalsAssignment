@@ -39,7 +39,7 @@ namespace MvcStore.Test
 		public void Init ()
 		{
 			var mockRepo = new Mock<IStoreRepository> ();
-			var mockCartRepo = new Mock<IShoppingCartRepository> ();
+			var mockCartRepo = new Mock<ICartRepository> ();
 			mockRepo.SetupGet (s => s.Categories).Returns (new List<Category> { new Category ("Misc") });
 			store = new Store (mockRepo.Object, mockCartRepo.Object);
 		}
