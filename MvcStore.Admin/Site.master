@@ -17,9 +17,9 @@
 	</div>
 	
 	<div id="content">
-		<asp:contentplaceholder id="MainContent" runat="server">
+		<asp:ContentPlaceholder id="MainContent" runat="server">
 			<!-- Page-specific content will go here... -->
-		</asp:contentplaceholder>
+		</asp:ContentPlaceholder>
 	</div>
 	
 	<div id="navigation">
