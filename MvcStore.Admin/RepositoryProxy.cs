@@ -1,5 +1,5 @@
 //
-// OrdersProxy.cs
+// RepositoryProxy.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -23,53 +23,49 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
 using System.Collections;
+using System.Linq;
+using MvcStore.Models;
+using MvcStore.DataAccess;
 
 namespace MvcStore.Admin
 {
-	public class OrdersProxy
+	public class RepositoryProxy<T> where T : ModelBase
 	{
-		public IEnumerable GetOrders ()
+		readonly IRepository<T> repo;
+		
+		public RepositoryProxy ()
 		{
-			return Global.OrderRepository.Orders;
+			// This is bad, but I'll do it anyway
+			repo = new NHibernateRepository<T> ();
 		}
 		
-		public IEnumerable GetOrderById (int id)
+		public IEnumerable GetItems ()
 		{
-			var order = Global.OrderRepository.GetOrder (id);
-			if (order == null)
+			return repo.GetItems ().OrderBy (i => i.Id);
+		}
+		
+		public IEnumerable GetItemById (int id)
+		{
+			var item = repo.GetItemById (id);
+			if (item != null)
+				return new object [] { item };
 			return new object [] {};
-			else
-			return new object [] { order };
 		}
 		
-		public void InsertOrder (string name, string description, decimal price)
+		public void AddItem (T item)
 		{
-			var product = new Product (name) {
-				Description = description,
-				Price = price
-			};
-			Global.Store.AddProduct (product);
+			repo.AddItem (item);
 		}
 		
-		public void DeleteProduct (int id)
+		public void UpdateItem (T item)
 		{
-			var product = Global.Store.GetProduct (id);
-			if (product != null)
-				Global.Store.RemoveProduct (product);
+			repo.UpdateItem (item);
 		}
 		
-		public void UpdateProduct (int id, string name, string description, decimal price)
+		public void DeleteItem (T item)
 		{
-			var product = Global.Store.GetProduct (id);
-			if (product == null)
-				return;
-			
-			product.SetName (name);
-			product.Description = description;
-			product.Price = price;
-			Global.Store.UpdateProduct (product);
+			repo.DeleteItem (item);
 		}
 	}
 }
