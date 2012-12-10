@@ -23,33 +23,18 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Web;
-using System.Web.SessionState;
 using System.Configuration;
-using MvcStore.Backend;
-using MvcStore.Backend.Models;
+using System.Web;
 
 namespace MvcStore.Admin
 {
 	public class Global : HttpApplication
 	{
-		internal static Store Store { get; private set; }
-		internal static IOrderRepository OrderRepository { get; private set; }
-		
 		protected virtual void Application_Start (Object sender, EventArgs e)
 		{
 			var connectionString = ConfigurationManager.ConnectionStrings ["AspSQLProvider"];
 			MvcStoreApplication.InitDb (connectionString.ConnectionString);
-			
-			// Setup store
-			Store = MvcStoreApplication.GetStore ();
-			
-			// Order repo
-			OrderRepository = MvcStoreApplication.GetOrderRepository ();
 		}
 		
 		protected virtual void Session_Start (Object sender, EventArgs e)
