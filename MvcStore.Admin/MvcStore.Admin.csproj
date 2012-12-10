@@ -91,7 +91,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StoreProxy.cs" />
     <Compile Include="Site.master.cs">
       <DependentUpon>Site.master</DependentUpon>
     </Compile>
@@ -263,7 +262,7 @@
     <Compile Include="EditInsertDelete\UserLevelAccess.aspx.cs">
       <DependentUpon>UserLevelAccess.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OrdersProxy.cs" />
+    <Compile Include="RepositoryProxy.cs" />
     <Compile Include="UserControls\MvcStoreMasterDetailsView.ascx.cs">
       <DependentUpon>MvcStoreMasterDetailsView.ascx</DependentUpon>
     </Compile>
