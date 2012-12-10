@@ -61,9 +61,13 @@
       <Project>{8675DE2F-3A60-49BE-8F3A-B4F67AE1E1EB}</Project>
       <Name>MvcStore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MvcStore.Backend\MvcStore.Backend.csproj">
+    <ProjectReference Include="..\MvcStore.Backend\libmvcstore.csproj">
       <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
-      <Name>MvcStore.Backend</Name>
+      <Name>libmvcstore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ninject.web\src\Ninject.Web\Ninject.Web.csproj">
+      <Project>{6BA63AF5-7DF0-468B-925F-DD564AF59F7C}</Project>
+      <Name>Ninject.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

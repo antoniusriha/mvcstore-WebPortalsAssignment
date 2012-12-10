@@ -8,7 +8,7 @@
     <ProjectGuid>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>MvcStore.Backend</RootNamespace>
-    <AssemblyName>MvcStore.Backend</AssemblyName>
+    <AssemblyName>libmvcstore</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>

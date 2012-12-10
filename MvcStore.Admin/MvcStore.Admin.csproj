@@ -274,13 +274,13 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <ProjectReference Include="..\MvcStore.Backend\MvcStore.Backend.csproj">
-      <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
-      <Name>MvcStore.Backend</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AspSQLProvider\src\NauckIT.PostgreSQLProvider\PostgreSQLProvider.csproj">
       <Project>{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}</Project>
       <Name>PostgreSQLProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcStore.Backend\libmvcstore.csproj">
+      <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
+      <Name>libmvcstore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
