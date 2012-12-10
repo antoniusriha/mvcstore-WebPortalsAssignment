@@ -10,3 +10,6 @@
 [submodule "Ninject.Web.Common"]
 	path = Ninject.Web.Common
 	url = linode:Projects/ninject.web.common
+[submodule "ninject.web"]
+	path = ninject.web
+	url = linode:Projects/ninject.web
