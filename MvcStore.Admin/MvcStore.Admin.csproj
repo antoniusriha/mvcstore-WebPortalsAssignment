@@ -83,6 +83,7 @@
     <Content Include="EditInsertDelete\UIValidation.aspx" />
     <Content Include="EditInsertDelete\UserLevelAccess.aspx" />
     <Content Include="UserControls\MvcStoreMasterDetailsView.ascx" />
+    <Content Include="UserControls\EntityLinkFieldTemplate.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">

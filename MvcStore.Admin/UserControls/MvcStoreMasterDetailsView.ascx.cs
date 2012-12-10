@@ -95,24 +95,31 @@ namespace MvcStore.Admin.UserControls
 					continue;
 				
 				if (typeof (ModelBase).IsAssignableFrom (item.PropertyType)) {
+					var templ = LoadTemplate ("~/UserControls/EntityLinkFieldTemplate.ascx");
+
+
+					var templColumn = new TemplateField {
+						ItemTemplate = LoadTemplate ("~/UserControls/EntityLinkFieldTemplate.ascx")
+					};
+
+					MasterView.Columns.Add (templColumn);
 					var templField = new TemplateField {
-						ItemTemplate = new ItemTemplate {
-							
-						}
+						ItemTemplate = LoadTemplate ("~/UserControls/EntityLinkFieldTemplate.ascx")
 					};
-					
-					var hlc = new HyperLinkField {
-						DataTextField = item.Name,
-						HeaderText = item.Name,
-						DataNavigateUrlFormatString = "~/Default.aspx",
-					};
-					MasterView.Columns.Add (hlc);
-					var hlf = new HyperLinkField {
-						DataTextField = item.Name,
-						HeaderText = item.Name,
-						DataNavigateUrlFormatString = "~/Default.aspx",
-					};
-					DetailView.Fields.Add (hlf);
+					DetailView.Fields.Add (templField);
+
+//					var hlc = new HyperLinkField {
+//						DataTextField = item.Name,
+//						HeaderText = item.Name,
+//						DataNavigateUrlFormatString = "~/Default.aspx",
+//					};
+//					MasterView.Columns.Add (hlc);
+//					var hlf = new HyperLinkField {
+//						DataTextField = item.Name,
+//						HeaderText = item.Name,
+//						DataNavigateUrlFormatString = "~/Default.aspx",
+//					};
+//					DetailView.Fields.Add (hlf);
 					continue;
 				}
 				
