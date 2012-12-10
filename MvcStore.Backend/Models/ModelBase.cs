@@ -23,16 +23,63 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MvcStore.Models
 {
-	public abstract class ModelBase
+	public abstract class ModelBase : IEquatable<ModelBase>
 	{
 		[ScaffoldColumn(false)]
 		public virtual int Id { get; set; }
 		
 		[ScaffoldColumn(false)]
 		public virtual string Description { get; set; }
+
+		public virtual bool Equals (ModelBase other)
+		{
+			if (other == null)
+				return false;
+			
+			if (GetType () != other.GetType ())
+				return false;
+			
+			return Id == other.Id;
+		}
+		
+		public override bool Equals (object obj)
+		{
+			var m = obj as ModelBase;
+			if (!Equals (m, null))
+				return Equals (m);
+			return false;
+		}
+		
+		public override int GetHashCode ()
+		{
+			return GetType ().GetHashCode () ^ Id;
+		}
+		
+		public static bool operator == (ModelBase x, ModelBase y)
+		{
+			if (!Equals (x, null))
+				return x.Equals (y);
+			return Equals (y, null);
+		}
+		
+		public static bool operator != (ModelBase x, ModelBase y)
+		{
+			return !(x == y);
+		}
+		
+		public override string ToString ()
+		{
+			var type = GetType ();
+			var name = type.Name + ": " + Id;
+			var nameProperty = type.GetProperty ("Name");
+			if (nameProperty != null && nameProperty.PropertyType == typeof (string))
+				name = (string)nameProperty.GetValue (this, new object [] {});
+			return name;
+		}
 	}
 }
