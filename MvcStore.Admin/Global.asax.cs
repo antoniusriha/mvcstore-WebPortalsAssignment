@@ -42,9 +42,7 @@ namespace MvcStore.Admin
 				.Map<Category> ().To (root.Find ("Category"))
 				.Map<Product> ().To (root.Find ("Product"))
 				.Map<Order> ().To (root.Find ("Order"))
-				.Map<OrderDetail> ().To (root.Find ("Category"))
-				.Map<Cart> ().To (root.Find ("Product"))
-				.Map<CartItem> ().To (root.Find ("Order"));
+				.Map<Cart> ().To (root.Find ("Cart"));
 		}
 		
 		protected virtual void Session_Start (Object sender, EventArgs e)
