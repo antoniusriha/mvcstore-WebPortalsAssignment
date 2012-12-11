@@ -46,20 +46,6 @@
     <Content Include="web.config" />
     <Content Include="Default.aspx" />
     <Content Include="Site.master" />
-    <Content Include="BasicReporting\DeclarativeParams.aspx" />
-    <Content Include="BasicReporting\Default.aspx" />
-    <Content Include="BasicReporting\ProgrammaticParams.aspx" />
-    <Content Include="BasicReporting\SimpleDisplay.aspx" />
-    <Content Include="CustomFormatting\CustomColors.aspx" />
-    <Content Include="CustomFormatting\Default.aspx" />
-    <Content Include="CustomFormatting\DetailsViewTemplateField.aspx" />
-    <Content Include="CustomFormatting\FormView.aspx" />
-    <Content Include="CustomFormatting\GridViewTemplateField.aspx" />
-    <Content Include="CustomFormatting\SummaryDataInFooter.aspx" />
-    <Content Include="Filtering\Default.aspx" />
-    <Content Include="Filtering\DetailsBySelecting.aspx" />
-    <Content Include="Filtering\FilterByDropDownList.aspx" />
-    <Content Include="Filtering\MasterDetailsDetails.aspx" />
     <Content Include="Web.sitemap" />
     <Content Include="UserControls\SectionLevelTutorialListing.ascx" />
     <Content Include="ProductManagement\Default.aspx" />
@@ -73,15 +59,6 @@
     <Content Include="App_Themes\DataWebControls\DetailsView.skin" />
     <Content Include="App_Themes\DataWebControls\GridView.skin" />
     <Content Include="Styles.css" />
-    <Content Include="EditInsertDelete\Basics.aspx" />
-    <Content Include="EditInsertDelete\ConfirmationOnDelete.aspx" />
-    <Content Include="EditInsertDelete\CustomizedUI.aspx" />
-    <Content Include="EditInsertDelete\DataModificationEvents.aspx" />
-    <Content Include="EditInsertDelete\Default.aspx" />
-    <Content Include="EditInsertDelete\ErrorHandling.aspx" />
-    <Content Include="EditInsertDelete\OptimisticConcurrency.aspx" />
-    <Content Include="EditInsertDelete\UIValidation.aspx" />
-    <Content Include="EditInsertDelete\UserLevelAccess.aspx" />
     <Content Include="UserControls\MvcStoreMasterDetailsView.ascx" />
     <Content Include="UserControls\EntityLinkFieldTemplate.ascx" />
   </ItemGroup>
@@ -100,90 +77,6 @@
     </Compile>
     <Compile Include="Site.master.designer.cs">
       <DependentUpon>Site.master</DependentUpon>
-    </Compile>
-    <Compile Include="BasicReporting\DeclarativeParams.aspx.cs">
-      <DependentUpon>DeclarativeParams.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BasicReporting\DeclarativeParams.aspx.designer.cs">
-      <DependentUpon>DeclarativeParams.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BasicReporting\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BasicReporting\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BasicReporting\ProgrammaticParams.aspx.cs">
-      <DependentUpon>ProgrammaticParams.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BasicReporting\ProgrammaticParams.aspx.designer.cs">
-      <DependentUpon>ProgrammaticParams.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BasicReporting\SimpleDisplay.aspx.cs">
-      <DependentUpon>SimpleDisplay.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BasicReporting\SimpleDisplay.aspx.designer.cs">
-      <DependentUpon>SimpleDisplay.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\CustomColors.aspx.cs">
-      <DependentUpon>CustomColors.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\CustomColors.aspx.designer.cs">
-      <DependentUpon>CustomColors.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\DetailsViewTemplateField.aspx.cs">
-      <DependentUpon>DetailsViewTemplateField.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\DetailsViewTemplateField.aspx.designer.cs">
-      <DependentUpon>DetailsViewTemplateField.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\FormView.aspx.cs">
-      <DependentUpon>FormView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\FormView.aspx.designer.cs">
-      <DependentUpon>FormView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\GridViewTemplateField.aspx.cs">
-      <DependentUpon>GridViewTemplateField.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\GridViewTemplateField.aspx.designer.cs">
-      <DependentUpon>GridViewTemplateField.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\SummaryDataInFooter.aspx.cs">
-      <DependentUpon>SummaryDataInFooter.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomFormatting\SummaryDataInFooter.aspx.designer.cs">
-      <DependentUpon>SummaryDataInFooter.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Filtering\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Filtering\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Filtering\DetailsBySelecting.aspx.cs">
-      <DependentUpon>DetailsBySelecting.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Filtering\DetailsBySelecting.aspx.designer.cs">
-      <DependentUpon>DetailsBySelecting.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Filtering\FilterByDropDownList.aspx.cs">
-      <DependentUpon>FilterByDropDownList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Filtering\FilterByDropDownList.aspx.designer.cs">
-      <DependentUpon>FilterByDropDownList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Filtering\MasterDetailsDetails.aspx.cs">
-      <DependentUpon>MasterDetailsDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Filtering\MasterDetailsDetails.aspx.designer.cs">
-      <DependentUpon>MasterDetailsDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SectionLevelTutorialListing.ascx.cs">
       <DependentUpon>SectionLevelTutorialListing.ascx</DependentUpon>
@@ -239,33 +132,6 @@
     <Compile Include="ProductManagement\Orders.aspx.designer.cs">
       <DependentUpon>Orders.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EditInsertDelete\Basics.aspx.cs">
-      <DependentUpon>Basics.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditInsertDelete\ConfirmationOnDelete.aspx.cs">
-      <DependentUpon>ConfirmationOnDelete.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditInsertDelete\CustomizedUI.aspx.cs">
-      <DependentUpon>CustomizedUI.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditInsertDelete\DataModificationEvents.aspx.cs">
-      <DependentUpon>DataModificationEvents.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditInsertDelete\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditInsertDelete\ErrorHandling.aspx.cs">
-      <DependentUpon>ErrorHandling.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditInsertDelete\OptimisticConcurrency.aspx.cs">
-      <DependentUpon>OptimisticConcurrency.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditInsertDelete\UIValidation.aspx.cs">
-      <DependentUpon>UIValidation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditInsertDelete\UserLevelAccess.aspx.cs">
-      <DependentUpon>UserLevelAccess.aspx</DependentUpon>
-    </Compile>
     <Compile Include="RepositoryProxy.cs" />
     <Compile Include="UserControls\MvcStoreMasterDetailsView.ascx.cs">
       <DependentUpon>MvcStoreMasterDetailsView.ascx</DependentUpon>
@@ -294,14 +160,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BasicReporting\" />
-    <Folder Include="Filtering\" />
-    <Folder Include="CustomFormatting\" />
     <Folder Include="UserControls\" />
     <Folder Include="ProductManagement\" />
     <Folder Include="UserManagement\" />
     <Folder Include="App_Themes\" />
     <Folder Include="App_Themes\DataWebControls\" />
-    <Folder Include="EditInsertDelete\" />
   </ItemGroup>
 </Project>
