@@ -32,4 +32,3 @@
 	</p>
 	<asp:Button ID="InsertNewItemButton" OnClick="InsertNewItemButton_Click"
 		runat="server" Text="Add a new item ..." />
-	<p>Note: This UI is shitty from a HCI perspective.</p>

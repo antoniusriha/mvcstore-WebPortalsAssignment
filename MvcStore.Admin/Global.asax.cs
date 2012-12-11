@@ -26,6 +26,7 @@
 using System;
 using System.Configuration;
 using System.Web;
+using MvcStore.Models;
 
 namespace MvcStore.Admin
 {
@@ -35,6 +36,15 @@ namespace MvcStore.Admin
 		{
 			var connectionString = ConfigurationManager.ConnectionStrings ["AspSQLProvider"];
 			MvcStoreApplication.InitDb (connectionString.ConnectionString);
+			
+			var root = SiteMap.RootNode;
+			EntitySiteMappingConfiguration.Configure ()
+				.Map<Category> ().To (root.Find ("Category"))
+				.Map<Product> ().To (root.Find ("Product"))
+				.Map<Order> ().To (root.Find ("Order"))
+				.Map<OrderDetail> ().To (root.Find ("Category"))
+				.Map<Cart> ().To (root.Find ("Product"))
+				.Map<CartItem> ().To (root.Find ("Order"));
 		}
 		
 		protected virtual void Session_Start (Object sender, EventArgs e)

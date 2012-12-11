@@ -1,1 +1,0 @@
-<asp:Label ID="EntityLinkName" runat="server" Text='<%# Eval("Category.Name") %>' />

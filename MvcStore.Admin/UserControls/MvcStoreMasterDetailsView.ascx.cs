@@ -34,6 +34,11 @@ namespace MvcStore.Admin.UserControls
 {
 	public partial class MvcStoreMasterDetailsView : UserControl
 	{
+		protected override void OnLoad (EventArgs e)
+		{
+			base.OnLoad (e);
+		}
+		
 		public string EntityTypeName {
 			get { return entityTypeName; }
 			set {
@@ -95,31 +100,21 @@ namespace MvcStore.Admin.UserControls
 					continue;
 				
 				if (typeof (ModelBase).IsAssignableFrom (item.PropertyType)) {
-					var templ = LoadTemplate ("~/UserControls/EntityLinkFieldTemplate.ascx");
-
-
-					var templColumn = new TemplateField {
-						ItemTemplate = LoadTemplate ("~/UserControls/EntityLinkFieldTemplate.ascx")
+					var site = EntitySiteMappingConfiguration.Instance [item.PropertyType];
+					var hlc = new HyperLinkField {
+						DataTextField = item.Name,
+						NavigateUrl = site.Url,
+						HeaderText = item.Name
 					};
-
-					MasterView.Columns.Add (templColumn);
-					var templField = new TemplateField {
-						ItemTemplate = LoadTemplate ("~/UserControls/EntityLinkFieldTemplate.ascx")
+					MasterView.Columns.Add (hlc);
+					
+					var hlf = new HyperLinkField {
+						DataTextField = item.Name,
+						NavigateUrl = site.Url,
+						HeaderText = item.Name
 					};
-					DetailView.Fields.Add (templField);
-
-//					var hlc = new HyperLinkField {
-//						DataTextField = item.Name,
-//						HeaderText = item.Name,
-//						DataNavigateUrlFormatString = "~/Default.aspx",
-//					};
-//					MasterView.Columns.Add (hlc);
-//					var hlf = new HyperLinkField {
-//						DataTextField = item.Name,
-//						HeaderText = item.Name,
-//						DataNavigateUrlFormatString = "~/Default.aspx",
-//					};
-//					DetailView.Fields.Add (hlf);
+					DetailView.Fields.Add (hlf);
+					
 					continue;
 				}
 				

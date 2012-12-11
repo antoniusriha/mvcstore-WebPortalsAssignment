@@ -2,14 +2,14 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode url="~/Default.aspx" title="Home" description="Home">
 	  <siteMapNode title="Product Management" url="~/ProductManagement/Default.aspx">
-		<siteMapNode url="~/ProductManagement/Categories.aspx" title="Categories" />
-		<siteMapNode url="~/ProductManagement/Products.aspx" title="Products" />
-		<siteMapNode url="~/ProductManagement/Carts.aspx" title="Carts" />
-		<siteMapNode url="~/ProductManagement/Orders.aspx" title="Orders" />
+		<siteMapNode url="~/ProductManagement/Categories.aspx" title="Categories" description="Category" />
+		<siteMapNode url="~/ProductManagement/Products.aspx" title="Products" description="Product" />
+		<siteMapNode url="~/ProductManagement/Carts.aspx" title="Carts" description="Cart" />
+		<siteMapNode url="~/ProductManagement/Orders.aspx" title="Orders" description="Order" />
       </siteMapNode>
       <siteMapNode title="User Management" url="~/UserManagement/Default.aspx">
-		<siteMapNode url="~/UserManagement/Roles.aspx" title="Roles" />
-		<siteMapNode url="~/UserManagement/Users.aspx" title="Users" />
+		<siteMapNode url="~/UserManagement/Roles.aspx" title="Roles" description="Role" />
+		<siteMapNode url="~/UserManagement/Users.aspx" title="Users" description="User" />
       </siteMapNode>
   </siteMapNode>
 </siteMap>
