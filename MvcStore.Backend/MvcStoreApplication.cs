@@ -51,9 +51,6 @@ namespace MvcStore
 			
 			if (!exportSchema)
 				return;
-			
-			// Init db with dummy data
-			LoadDummyData (sessionFactory);
 		}
 		
 		public static void OpenSession (HttpContext context)
@@ -76,37 +73,6 @@ namespace MvcStore
 						session.Flush ();
 						session.Dispose ();
 					}
-				}
-			}
-		}
-		
-#if DEBUG
-		public
-#endif
-		static void LoadDummyData (ISessionFactory sessionFactory)
-		{
-			using (var session = sessionFactory.OpenSession ()) {
-				// populate the database
-				using (var transaction = session.BeginTransaction ()) {
-					var food = new Category { Name = "Food" };
-					
-					var prod = new Product () { Name = "Potatoes", Price = 3.60m };
-					prod.SetCategory (food);
-					prod = new Product () { Name = "Fish", Price = 4.49m };
-					prod.SetCategory (food);
-					prod = new Product () { Name = "Milk", Price = 0.79m };
-					prod.SetCategory (food);
-					prod = new Product () { Name = "Bread", Price = 1.29m };
-					prod.SetCategory (food);
-					prod = new Product () { Name = "Cheese", Price = 2.10m };
-					prod.SetCategory (food);
-					prod = new Product () { Name = "Waffles", Price = 2.41m };
-					prod.SetCategory (food);
-					
-					// save category, this saves everything else via cascading
-					session.SaveOrUpdate (food);
-					
-					transaction.Commit ();
 				}
 			}
 		}

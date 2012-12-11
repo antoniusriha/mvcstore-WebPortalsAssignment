@@ -1,0 +1,8 @@
+INSERT INTO categories ("id", "name", "description", "store_id") VALUES (1, 'Beverages', 'Soft drinks, coffees, teas, beers, and ales', 1);
+INSERT INTO categories ("id", "name", "description", "store_id") VALUES (2, 'Condiments', 'Sweet and savory sauces, relishes, spreads, and seasonings', 1);
+INSERT INTO categories ("id", "name", "description", "store_id") VALUES (3, 'Confections', 'Desserts, candies, and sweet breads', 1);
+INSERT INTO categories ("id", "name", "description", "store_id") VALUES (4, 'Dairy Products', 'Cheeses', 1);
+INSERT INTO categories ("id", "name", "description", "store_id") VALUES (5, 'Grains/Cereals', 'Breads, crackers, pasta, and cereal', 1);
+INSERT INTO categories ("id", "name", "description", "store_id") VALUES (6, 'Meat/Poultry', 'Prepared meats', 1);
+INSERT INTO categories ("id", "name", "description", "store_id") VALUES (7, 'Produce', 'Dried fruit and bean curd', 1);
+INSERT INTO categories ("id", "name", "description", "store_id") VALUES (8, 'Seafood', 'Seaweed and fish', 1);

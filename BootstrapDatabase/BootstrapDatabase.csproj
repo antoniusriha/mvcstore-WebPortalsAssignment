@@ -39,6 +39,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="northwind_dump\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -48,6 +49,14 @@
     <None Include="MembershipRolesSetup.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="populatedb.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="northwind_dump\categories_inserts" />
+    <None Include="northwind_dump\orderdetails_inserts" />
+    <None Include="northwind_dump\orders_inserts" />
+    <None Include="northwind_dump\products_inserts" />
+    <None Include="northwind_dump\store_inserts" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvcStore.Backend\libmvcstore.csproj">

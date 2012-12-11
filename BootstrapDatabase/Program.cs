@@ -55,6 +55,12 @@ class Program
 		MvcStoreApplication.InitDb (connectionString, true);
 		Console.WriteLine ();
 		
+		// loading dummy data into store schema
+		Console.WriteLine ("Loading dummy data into store schema ...");
+		var pLoadData = Process.Start ("/usr/bin/psql", DbName + " -f populatedb.sql");
+		pLoadData.WaitForExit ();
+		Console.WriteLine ();
+		
 		// setup membership schema
 		Console.WriteLine ("Setting up membership schema ...");
 		var pExeMemSchema = Process.Start ("/usr/bin/psql",

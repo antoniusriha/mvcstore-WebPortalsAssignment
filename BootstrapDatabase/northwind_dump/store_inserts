@@ -1,0 +1,5 @@
+INSERT INTO store ("id", "description") VALUES (1, "MvcStore");
+
+-- insert categories
+
+UPDATE store SET "defaultcategory_id"=1 WHERE "id"=1;
