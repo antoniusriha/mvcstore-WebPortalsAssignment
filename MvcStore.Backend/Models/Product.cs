@@ -33,6 +33,8 @@ namespace MvcStore.Models
 		
 		public virtual Category Category { get; set; }
 		
+		public virtual bool Discontinued { get; set; }
+		
 		public virtual decimal Price { get; set; }
 		
 		public virtual void SetCategory (Category category)
