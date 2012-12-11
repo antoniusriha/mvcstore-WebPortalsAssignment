@@ -40,7 +40,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.DynamicData" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
