@@ -13,3 +13,6 @@
 [submodule "ninject.web"]
 	path = ninject.web
 	url = linode:Projects/ninject.web
+[submodule "picgen"]
+	path = picgen
+	url = linode:Projects/picgen
