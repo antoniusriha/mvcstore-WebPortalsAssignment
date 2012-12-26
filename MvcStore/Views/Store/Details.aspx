@@ -1,10 +1,10 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/_LayoutDetail.master" Inherits="System.Web.Mvc.ViewPage<MvcStore.Models.Product>" %>
 <asp:Content ID="headContent" ContentPlaceHolderID="head" runat="server">
-	<title>Produkt - <%: Model.Name %></title>
+	<title>Product - <%: Model.Name %></title>
 </asp:Content>
 <asp:Content ID="MainContentContent" ContentPlaceHolderID="MainContent" runat="server">
 	<p>
-    	<img alt="<%: Model.Name %>" src="@Model.AlbumArtUrl" />
+    	<img alt="<%: Model.Name %>" src='<%= Url.Action ("ShowProductImage", "Store", new { productId = Model.Id }) %>' />
 	</p>
 	<div id="album-details">
 		<p>

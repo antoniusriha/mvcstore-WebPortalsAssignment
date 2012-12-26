@@ -4,9 +4,15 @@
 </asp:Content>
 <asp:Content ID="MainContentContent" ContentPlaceHolderID="MainContent" runat="server">
 	<h2>Browsing Category: <%: Model.Name %></h2>
-	<ul>
+	<ul id="album-list">
     	<% foreach (var product in Model.Products) { %>
-        	<li><%: Html.ActionLink (product.Name, "Details", new { id = product.Id }) %></li>
+        	<li>
+				<a href='<%= Url.Action ("Details", new { id = product.Id }) %>' >
+					<img alt="<%= product.Name %>" width="100" height="100"
+						 src='<%= Url.Action ("ShowProductImage", "Store", new { productId = product.Id }) %>' />
+					<span><%= product.Name %></span>
+				</a>
+        	</li>
     	<% } %>
 	</ul>
 </asp:Content>

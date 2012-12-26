@@ -37,6 +37,12 @@ namespace MvcStore.Controllers
 		{
 			return View (productRepo.GetItemById (id));
 		}
+
+		public ActionResult ShowProductImage (int productId)
+		{
+			var p = productRepo.GetItemById (productId);
+			return File (p.Image, "image/png");
+		}
 		
 		//
 		// GET: /Store/GenreMenu
