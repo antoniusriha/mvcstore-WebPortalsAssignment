@@ -26,7 +26,10 @@
 using System;
 using System.Configuration;
 using System.Diagnostics;
+using PictureGen;
 using MvcStore;
+using MvcStore.DataAccess;
+using MvcStore.Models;
 
 class Program
 {
@@ -60,6 +63,14 @@ class Program
 		var pLoadData = Process.Start ("/usr/bin/psql", DbName + " -f populatedb.sql");
 		pLoadData.WaitForExit ();
 		Console.WriteLine ();
+
+		// loading product images into db
+		var picgen = new PictureGenerator { Size = 250 };
+		var repo = new NHibernateRepository<Product> ();
+		foreach (var item in repo.GetItems ()) {
+			item.Image = picgen.Next ();
+			repo.UpdateItem (item);
+		}
 		
 		// setup membership schema
 		Console.WriteLine ("Setting up membership schema ...");

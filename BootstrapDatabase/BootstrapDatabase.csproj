@@ -63,5 +63,9 @@
       <Project>{DE118DF6-AD28-4395-95F2-4708D7FE8521}</Project>
       <Name>libmvcstore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\picgen\libpicturegen\libpicturegen.csproj">
+      <Project>{24B1C778-5374-4F1F-892F-4EDC96989E71}</Project>
+      <Name>libpicturegen</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

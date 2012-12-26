@@ -48,9 +48,11 @@ namespace MvcStore
 			// Setup database: Create NHibernate session factory
 			sessionFactory = CreateSessionFactory ();
 			SessionHelper = new SessionHelper (sessionFactory);
-			
-			if (!exportSchema)
-				return;
+		}
+
+		public static ISession OpenSession ()
+		{
+			return sessionFactory.OpenSession ();
 		}
 		
 		public static void OpenSession (HttpContext context)
