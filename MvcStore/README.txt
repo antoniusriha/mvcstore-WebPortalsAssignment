@@ -1,8 +1,32 @@
 MvcStore
---------
+========
+
+Version 0.0.2
+-------------
+Verwendete Technologien/Tools:
+	* ASP.NET MVC 2 (aspx engine)
+	* mono 2.10.8.1 (== .NET 4.0)
+	* Ubuntu Precise 12.04 LTS (Entwicklungs- und Deployment-OS)
+	* Apache web server 2.2.22
+	* PostgreSQL 9.1.7
+	* PostgreSQL ASP.NET Membership Provider von Nauck.IT
+	http://dev.nauck-it.de/projects/show/aspsqlprovider
+	* Fluent NHibernate 1.3 (mit Automapping)
+	* MonoDevelop 3.1.0 (latest)
+	* NUnit 2.6
+	* Moq 4.0
+	* FluentAssertions 2.0
+	* Linode zum Hosten
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Version 0.0.1
+-------------
 
 Verwendete Technologien/Tools:
-	* ASP.NET MVC 3 (aspx engine)
+	* ASP.NET MVC 2 (aspx engine)
 	* mono 2.10.8.1 (== .NET 4.0)
 	* Ubuntu Precise 12.04 LTS (Entwicklungs- und Deployment-OS)
 	* Apache web server 2.2.22
