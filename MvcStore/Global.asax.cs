@@ -25,14 +25,15 @@
 // THE SOFTWARE.
 using System;
 using System.Configuration;
+using System.Diagnostics;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ninject;
 using Ninject.Web.Common;
-using MvcStore.Models;
 using MvcStore.DataAccess;
-using System.Reflection;
+using MvcStore.Models;
 
 namespace MvcStore
 {
