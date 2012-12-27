@@ -86,8 +86,10 @@ namespace MvcStore.Controllers
 		{
 			var cartId = GetCartId (context);
 			var cart = cartRepo.GetItems ().SingleOrDefault (c => c.Owner == cartId);
-			if (cart == null)
-				cartRepo.AddItem (new Cart { Owner = cartId });
+			if (cart == null) {
+				cart = new Cart { Owner = cartId };
+				cartRepo.AddItem (cart);
+			}
 			return cart;
 		}
 		
