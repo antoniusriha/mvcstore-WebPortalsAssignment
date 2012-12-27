@@ -114,7 +114,7 @@
         <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
         <WebDeployTargets>
           <Target Name="">
-            <FileCopier Handler="MonoDevelop.Deployment.LocalFileCopyHandler" TargetDirectory="/srv/www/localhost" ctype="LocalFileCopyConfiguration" />
+            <FileCopier Handler="MonoDevelop.Deployment.LocalFileCopyHandler" TargetDirectory="/srv/www/MvcStore" ctype="LocalFileCopyConfiguration" />
           </Target>
           <Target Name="">
             <FileCopier Handler="MonoDevelop.Deployment.SshFuseFileCopyHandler" TargetDirectory="antonius@li559-115.members.linode.com:/srv/www/MvcStore" ExtraMountArguments="" ctype="SshFuseFileCopyConfiguration" />
