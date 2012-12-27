@@ -1,6 +1,6 @@
 [submodule "AspSQLProvider"]
 	path = AspSQLProvider
-	url = git://github.com/dnauck/AspSQLProvider.git
+	url = linode:Projects/AspSQLProvider
 [submodule "ninject"]
 	path = ninject
 	url = linode:Projects/ninject
