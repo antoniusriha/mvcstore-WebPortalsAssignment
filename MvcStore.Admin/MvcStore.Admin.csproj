@@ -60,7 +60,6 @@
     <Content Include="App_Themes\DataWebControls\GridView.skin" />
     <Content Include="Styles.css" />
     <Content Include="UserControls\MvcStoreMasterDetailsView.ascx" />
-    <Content Include="UserControls\EntityLinkFieldTemplate.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
