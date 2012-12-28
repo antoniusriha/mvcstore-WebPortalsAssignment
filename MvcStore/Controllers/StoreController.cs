@@ -43,6 +43,25 @@ namespace MvcStore.Controllers
 			var p = productRepo.GetItemById (productId);
 			return File (p.Image, "image/png");
 		}
+
+		public ActionResult Search ()
+		{
+			return View ();
+		}
+
+		[HttpPost]
+		public ActionResult GetMatchingProducts (string searchTerm)
+		{
+			if (string.IsNullOrWhiteSpace (searchTerm))
+				return Json (new Dictionary<string, string> ());
+
+			searchTerm = searchTerm.ToLower ().Trim ();
+			var products = productRepo.GetItems ()
+				.Where (p => p.Name.ToLower ().Contains (searchTerm))
+				.Take (20)
+				.Select (p => new { Id = p.Id, ProductName = p.Name });
+			return Json (products);
+		}
 		
 		//
 		// GET: /Store/GenreMenu

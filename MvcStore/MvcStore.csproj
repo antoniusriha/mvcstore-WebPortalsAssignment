@@ -105,6 +105,8 @@
     <Content Include="Views\ShoppingCart\CartSummary.ascx" />
     <Content Include="Views\Store\CategoryMenu.ascx" />
     <Content Include="Views\Shared\_LayoutDetail.master" />
+    <Content Include="Views\Store\Search.aspx" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

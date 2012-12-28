@@ -3,7 +3,6 @@
 	<title>Shopping Cart</title>
 </asp:Content>
 <asp:Content ID="MainContentContent" ContentPlaceHolderID="MainContent" runat="server">
-<script src="<%: Url.Content("~/Scripts/jquery-1.8.2.min.js") %>" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         // Document.ready -> link up remove event handler
