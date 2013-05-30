@@ -1,18 +1,18 @@
 [submodule "AspSQLProvider"]
 	path = AspSQLProvider
-	url = linode:Projects/AspSQLProvider
+	url = git://github.com/dnauck/AspSQLProvider.git
 [submodule "ninject"]
 	path = ninject
-	url = linode:Projects/ninject
+	url = git@github.com:antoniusriha/ninject.git
 [submodule "ninject.web.mvc"]
 	path = ninject.web.mvc
-	url = linode:Projects/ninject.web.mvc
+	url = git://github.com/ninject/ninject.web.mvc.git
 [submodule "Ninject.Web.Common"]
 	path = Ninject.Web.Common
-	url = linode:Projects/ninject.web.common
+	url = git://github.com/ninject/Ninject.Web.Common.git
 [submodule "ninject.web"]
 	path = ninject.web
-	url = linode:Projects/ninject.web
+	url = git://github.com/ninject/ninject.web.git
 [submodule "picgen"]
 	path = picgen
-	url = linode:Projects/picgen
+	url = git@github.com:antoniusriha/picgen.git
