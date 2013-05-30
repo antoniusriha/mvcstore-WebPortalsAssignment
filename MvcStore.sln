@@ -95,6 +95,6 @@ Global
 		{FF3FB1BB-8986-4AD4-91F1-DA778A1FA65D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MvcStore.Admin\MvcStore.Admin.csproj
+		StartupItem = MvcStore\MvcStore.csproj
 	EndGlobalSection
 EndGlobal
